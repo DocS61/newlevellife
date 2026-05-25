@@ -1,0 +1,37 @@
+generator client {
+    provider = "prisma-client-js"
+    binaryTargets = ["native", "linux-musl-arm64-openssl-3.0.x"]
+    output = "/home/ubuntu/name_regret_calculator/nextjs_space/node_modules/.prisma/client"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Name {
+  id               Int      @id @default(autoincrement())
+  name             String   @unique
+  origin           String
+  meaningDe        String   @map("meaning_de")
+  meaningEn        String   @map("meaning_en")
+  meaningEs        String   @map("meaning_es")
+  gender           String   // "m", "f", "u" (unisex)
+  region           String   // "de", "en", "es", "international"
+  bullyingScore    Int      @map("bullying_score")    // 0-10
+  intlScore        Int      @map("intl_score")        // 0-10
+  careerScore      Int      @map("career_score")      // 0-10
+  trendScore       Int      @map("trend_score")       // 0-10
+  overallRegret    Int      @map("overall_regret")    // 0-100 calculated
+  explanationDe    String   @map("explanation_de")
+  explanationEn    String   @map("explanation_en")
+  explanationEs    String   @map("explanation_es")
+  popularity       Int      @default(50) // 0-100 popularity index
+  yearPeak         Int?     @map("year_peak")
+  createdAt        DateTime @default(now()) @map("created_at")
+
+  @@index([region])
+  @@index([overallRegret])
+  @@index([popularity])
+  @@map("names")
+}

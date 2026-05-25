@@ -1,0 +1,283 @@
+'use client'
+
+import { useState, useCallback, useRef, useEffect } from 'react'
+import { useI18n } from '@/lib/i18n/context'
+import { NameData, AIAnalysisResult, RecentSearch } from '@/lib/types'
+import { Search, Shuffle, Loader2, Sparkles } from 'lucide-react'
+import { NameResultCard } from './name-result-card'
+import { motion, AnimatePresence } from 'framer-motion'
+import { toast } from 'sonner'
+
+export function NameSearch() {
+  const { t, locale } = useI18n()
+  const [query, setQuery] = useState('')
+  const [suggestions, setSuggestions] = useState<NameData[]>([])
+  const [showSuggestions, setShowSuggestions] = useState(false)
+  const [result, setResult] = useState<NameData | null>(null)
+  const [aiResult, setAiResult] = useState<AIAnalysisResult | null>(null)
+  const [isAI, setIsAI] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [progress, setProgress] = useState(0)
+  const inputRef = useRef<HTMLInputElement>(null)
+  const suggestionsRef = useRef<HTMLDivElement>(null)
+
+  // Autocomplete
+  const fetchSuggestions = useCallback(async (q: string) => {
+    if ((q?.length ?? 0) < 2) { setSuggestions([]); return }
+    try {
+      const res = await fetch(`/api/names/search?q=${encodeURIComponent(q)}&limit=6`)
+      if (res?.ok) {
+        const data = await res.json()
+        setSuggestions(data?.names ?? [])
+      }
+    } catch { setSuggestions([]) }
+  }, [])
+
+  useEffect(() => {
+    const timer = setTimeout(() => fetchSuggestions(query), 200)
+    return () => clearTimeout(timer)
+  }, [query, fetchSuggestions])
+
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (suggestionsRef.current && !suggestionsRef.current.contains(e.target as Node)) {
+        setShowSuggestions(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClick)
+    return () => document.removeEventListener('mousedown', handleClick)
+  }, [])
+
+  const addRecentSearch = (name: string, overallRegret: number) => {
+    try {
+      const stored = JSON.parse(localStorage.getItem('nrc-recent') ?? '[]') as RecentSearch[]
+      const filtered = (stored ?? []).filter((s: RecentSearch) => s?.name !== name)
+      const updated = [{ name, overallRegret, timestamp: Date.now() }, ...filtered].slice(0, 10)
+      localStorage.setItem('nrc-recent', JSON.stringify(updated))
+      window.dispatchEvent(new Event('nrc-recent-updated'))
+    } catch { /* ignore */ }
+  }
+
+  const analyzeFromDB = async (nameData: NameData) => {
+    setResult(nameData)
+    setAiResult(null)
+    setIsAI(false)
+    setLoading(false)
+    addRecentSearch(nameData?.name ?? '', nameData?.overallRegret ?? 0)
+  }
+
+  const analyzeWithAI = async (name: string) => {
+    setLoading(true)
+    setProgress(0)
+    setResult(null)
+    setAiResult(null)
+    setIsAI(true)
+
+    try {
+      const response = await fetch('/api/analyze', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, locale }),
+      })
+
+      if (!response?.ok) {
+        throw new Error('Analysis failed')
+      }
+
+      const reader = response?.body?.getReader()
+      if (!reader) throw new Error('No reader')
+      const decoder = new TextDecoder()
+      let partialRead = ''
+
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) break
+        partialRead += decoder.decode(value, { stream: true })
+        let lines = partialRead.split('\n')
+        partialRead = lines?.pop() ?? ''
+        for (const line of (lines ?? [])) {
+          if (line?.startsWith('data: ')) {
+            const data = line.slice(6)
+            if (data === '[DONE]') return
+            try {
+              const parsed = JSON.parse(data)
+              if (parsed?.status === 'processing') {
+                setProgress((prev: number) => Math.min((prev ?? 0) + 3, 95))
+              } else if (parsed?.status === 'completed') {
+                setAiResult(parsed?.result ?? null)
+                setProgress(100)
+                setLoading(false)
+                addRecentSearch(name, parsed?.result?.overallRegret ?? 0)
+                return
+              } else if (parsed?.status === 'error') {
+                throw new Error(parsed?.message ?? 'Analysis failed')
+              }
+            } catch (e: any) {
+              if (e?.message !== 'Analysis failed') { /* skip parse errors */ }
+              else throw e
+            }
+          }
+        }
+      }
+      setLoading(false)
+    } catch (err: any) {
+      setLoading(false)
+      toast.error(t('errorText'))
+      console.error('AI analysis error:', err)
+    }
+  }
+
+  const handleSubmit = async (e?: React.FormEvent) => {
+    e?.preventDefault?.()
+    const trimmed = query?.trim() ?? ''
+    if (!trimmed) return
+    setShowSuggestions(false)
+
+    setLoading(true)
+    try {
+      const res = await fetch(`/api/names/search?q=${encodeURIComponent(trimmed)}&exact=true`)
+      const data = await res?.json()
+      if (data?.names?.[0]) {
+        analyzeFromDB(data.names[0])
+      } else {
+        analyzeWithAI(trimmed)
+      }
+    } catch {
+      analyzeWithAI(trimmed)
+    }
+  }
+
+  const handleRandom = async () => {
+    try {
+      const res = await fetch('/api/names/random')
+      const data = await res?.json()
+      if (data?.name) {
+        setQuery(data.name.name ?? '')
+        analyzeFromDB(data.name)
+      }
+    } catch {
+      toast.error(t('errorText'))
+    }
+  }
+
+  const selectSuggestion = (n: NameData) => {
+    setQuery(n?.name ?? '')
+    setShowSuggestions(false)
+    analyzeFromDB(n)
+  }
+
+  return (
+    <div className="w-full">
+      {/* Search form */}
+      <form onSubmit={handleSubmit} className="relative w-full max-w-xl mx-auto">
+        <div className="relative" ref={suggestionsRef}>
+          <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
+            <Search className="w-5 h-5 text-muted-foreground" />
+          </div>
+          <input
+            ref={inputRef}
+            type="text"
+            value={query}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setQuery(e?.target?.value ?? ''); setShowSuggestions(true) }}
+            onFocus={() => setShowSuggestions(true)}
+            placeholder={t('heroPlaceholder')}
+            className="w-full h-14 pl-12 pr-4 rounded-xl bg-card border border-border text-base font-medium placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-[hsl(340,75%,55%)] focus:border-transparent transition-all"
+            style={{ boxShadow: 'var(--shadow-md)' }}
+          />
+
+          {/* Suggestions dropdown */}
+          <AnimatePresence>
+            {showSuggestions && (suggestions?.length ?? 0) > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: -4 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -4 }}
+                className="absolute top-full left-0 right-0 mt-2 bg-card rounded-xl border border-border overflow-hidden z-40"
+                style={{ boxShadow: 'var(--shadow-lg)' }}
+              >
+                {(suggestions ?? []).map((n: NameData) => (
+                  <button
+                    key={n?.id}
+                    type="button"
+                    onClick={() => selectSuggestion(n)}
+                    className="w-full text-left px-4 py-3 flex items-center justify-between hover:bg-accent transition-colors"
+                  >
+                    <div>
+                      <span className="font-medium">{n?.name}</span>
+                      <span className="text-xs text-muted-foreground ml-2">{n?.origin}</span>
+                    </div>
+                    <span className="font-mono text-xs font-bold" style={{
+                      color: (n?.overallRegret ?? 0) <= 30 ? 'hsl(170,60%,45%)' : (n?.overallRegret ?? 0) <= 60 ? 'hsl(43,74%,50%)' : 'hsl(0,84%,60%)'
+                    }}>
+                      {n?.overallRegret}/100
+                    </span>
+                  </button>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        <div className="flex items-center justify-center gap-3 mt-4">
+          <button
+            type="submit"
+            disabled={loading || !(query?.trim())}
+            className="px-6 py-3 rounded-xl font-medium text-sm bg-gradient-to-r from-[hsl(340,75%,55%)] to-[hsl(262,60%,55%)] text-white hover:opacity-90 disabled:opacity-50 transition-all flex items-center gap-2"
+            style={{ boxShadow: 'var(--shadow-md)' }}
+          >
+            {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Search className="w-4 h-4" />}
+            {t('heroButton')}
+          </button>
+          <button
+            type="button"
+            onClick={handleRandom}
+            disabled={loading}
+            className="px-6 py-3 rounded-xl font-medium text-sm bg-card border border-border hover:bg-accent disabled:opacity-50 transition-all flex items-center gap-2"
+            style={{ boxShadow: 'var(--shadow-sm)' }}
+          >
+            <Shuffle className="w-4 h-4" />
+            {t('heroRandomButton')}
+          </button>
+        </div>
+      </form>
+
+      {/* Loading state */}
+      <AnimatePresence>
+        {loading && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="max-w-xl mx-auto mt-8"
+          >
+            <div className="bg-card rounded-xl border border-border p-6 text-center" style={{ boxShadow: 'var(--shadow-md)' }}>
+              <Sparkles className="w-8 h-8 text-[hsl(340,75%,55%)] mx-auto mb-3 animate-pulse" />
+              <p className="text-sm font-medium mb-3">{t('loading')}</p>
+              <div className="h-2 rounded-full bg-muted overflow-hidden max-w-xs mx-auto">
+                <motion.div
+                  className="h-full rounded-full bg-gradient-to-r from-[hsl(340,75%,55%)] to-[hsl(262,60%,55%)]"
+                  animate={{ width: `${progress}%` }}
+                  transition={{ duration: 0.3 }}
+                />
+              </div>
+              {isAI && <p className="text-xs text-muted-foreground mt-2">{t('customAnalysisDesc')}</p>}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Results */}
+      <AnimatePresence>
+        {!loading && (result || aiResult) && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="max-w-xl mx-auto mt-8"
+          >
+            <NameResultCard data={result} aiResult={aiResult} isAI={isAI} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
