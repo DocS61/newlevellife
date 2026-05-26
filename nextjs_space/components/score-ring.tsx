@@ -20,12 +20,22 @@ function getScoreColor(score: number, maxScore: number): string {
   return 'hsl(0, 84%, 60%)'
 }
 
+function getRiskEmoji(score: number, maxScore: number): string {
+  const pct = (score / maxScore) * 100
+  if (pct <= 20) return '😊'
+  if (pct <= 40) return '🙂'
+  if (pct <= 60) return '😐'
+  if (pct <= 80) return '😟'
+  return '😰'
+}
+
 export function ScoreRing({ score, maxScore, size = 100, strokeWidth = 8, label, description, animate = true }: ScoreRingProps) {
   const [displayScore, setDisplayScore] = useState(animate ? 0 : score)
   const radius = (size - strokeWidth) / 2
   const circumference = 2 * Math.PI * radius
   const progress = (displayScore / maxScore) * circumference
   const color = getScoreColor(score, maxScore)
+  const emoji = getRiskEmoji(score, maxScore)
 
   useEffect(() => {
     if (!animate) { setDisplayScore(score); return }
@@ -71,10 +81,11 @@ export function ScoreRing({ score, maxScore, size = 100, strokeWidth = 8, label,
             transition={{ duration: 0.8, ease: 'easeOut' }}
           />
         </svg>
-        <div className="absolute inset-0 flex items-center justify-center">
+        <div className="absolute inset-0 flex flex-col items-center justify-center">
           <span className="font-mono font-bold text-lg" style={{ color }}>
             {displayScore}
           </span>
+          <span className="text-base leading-none mt-0.5">{emoji}</span>
         </div>
       </div>
       <div className="text-center">

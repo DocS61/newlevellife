@@ -45,6 +45,26 @@ export default function RootLayout({
         <script src="https://apps.abacus.ai/chatllm/appllm-lib.js"></script>
       </head>
       <body className={`${dmSans.variable} ${jakartaSans.variable} ${jetbrainsMono.variable} font-sans`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebApplication',
+              name: 'Namen-Reue-Rechner',
+              description: 'Analysiere Babynamen auf Mobbing-Risiko, internationale Aussprache, Karrierewirkung und Trends.',
+              url: process.env.NEXTAUTH_URL || 'http://localhost:3000',
+              applicationCategory: 'UtilityApplication',
+              operatingSystem: 'Web',
+              offers: {
+                '@type': 'Offer',
+                price: '0',
+                priceCurrency: 'EUR',
+              },
+              inLanguage: 'de',
+            }),
+          }}
+        />
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
