@@ -12,7 +12,7 @@ COPY package.coolify.json ./package.json
 COPY prisma/schema.coolify.prisma ./prisma/schema.prisma
 
 # Dependencies installieren
-RUN yarn install --frozen-lockfile || yarn install
+RUN yarn install
 
 # Prisma Client generieren
 RUN npx prisma generate
