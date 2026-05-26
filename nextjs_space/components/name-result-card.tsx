@@ -3,7 +3,7 @@
 import { NameData, AIAnalysisResult } from '@/lib/types'
 import { ScoreRing } from './score-ring'
 import { ScoreBar } from './score-bar'
-import { Share2, Printer, MapPin, TrendingUp, User, Sparkles, Info } from 'lucide-react'
+import { Share2, Printer, MapPin, TrendingUp, User, Sparkles, Info, Heart } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { toast } from 'sonner'
 
@@ -17,6 +17,12 @@ function getGenderLabel(gender: string): string {
   if (gender === 'm') return 'Männlich'
   if (gender === 'f') return 'Weiblich'
   return 'Unisex'
+}
+
+function getGenderEmoji(gender: string): string {
+  if (gender === 'm') return '♂️'
+  if (gender === 'f') return '♀️'
+  return '⚧️'
 }
 
 function getRiskLabel(score: number, maxScore: number): string {
@@ -123,38 +129,40 @@ export function NameResultCard({ data, aiResult, isAI = false }: NameResultCardP
         </div>
       </div>
 
-      {/* Info row */}
-      <div className="px-6 py-4 grid grid-cols-2 sm:grid-cols-4 gap-3 border-b border-border bg-muted/20">
-        <div className="flex items-center gap-2">
-          <MapPin className="w-4 h-4 text-muted-foreground" />
-          <div>
-            <p className="text-xs text-muted-foreground">Herkunft</p>
-            <p className="text-sm font-medium">{origin}</p>
-          </div>
-        </div>
-        <div className="flex items-center gap-2">
-          <Sparkles className="w-4 h-4 text-muted-foreground" />
-          <div>
-            <p className="text-xs text-muted-foreground">Bedeutung</p>
-            <p className="text-sm font-medium">{meaning}</p>
-          </div>
-        </div>
-        <div className="flex items-center gap-2">
-          <User className="w-4 h-4 text-muted-foreground" />
-          <div>
-            <p className="text-xs text-muted-foreground">Geschlecht</p>
-            <p className="text-sm font-medium">{getGenderLabel(gender)}</p>
-          </div>
-        </div>
-        {data?.yearPeak && (
-          <div className="flex items-center gap-2">
-            <TrendingUp className="w-4 h-4 text-muted-foreground" />
-            <div>
-              <p className="text-xs text-muted-foreground">Beliebtheitshoch</p>
-              <p className="text-sm font-medium">{data.yearPeak}</p>
+      {/* Info cards - redesigned */}
+      <div className="px-6 py-5 border-b border-border">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="flex items-start gap-3 p-3 rounded-lg bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-950/20 dark:to-indigo-950/20 border border-purple-100 dark:border-purple-800/30">
+            <MapPin className="w-5 h-5 text-purple-500 mt-0.5 shrink-0" />
+            <div className="min-w-0">
+              <p className="text-[11px] font-semibold text-purple-600 dark:text-purple-400 uppercase tracking-wider">Herkunft</p>
+              <p className="text-sm font-medium mt-0.5 leading-snug">{origin}</p>
             </div>
           </div>
-        )}
+          <div className="flex items-start gap-3 p-3 rounded-lg bg-gradient-to-br from-pink-50 to-rose-50 dark:from-pink-950/20 dark:to-rose-950/20 border border-pink-100 dark:border-pink-800/30">
+            <Sparkles className="w-5 h-5 text-pink-500 mt-0.5 shrink-0" />
+            <div className="min-w-0">
+              <p className="text-[11px] font-semibold text-pink-600 dark:text-pink-400 uppercase tracking-wider">Bedeutung</p>
+              <p className="text-sm font-medium mt-0.5 leading-snug">{meaning}</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-3 p-3 rounded-lg bg-gradient-to-br from-sky-50 to-cyan-50 dark:from-sky-950/20 dark:to-cyan-950/20 border border-sky-100 dark:border-sky-800/30">
+            <User className="w-5 h-5 text-sky-500 mt-0.5 shrink-0" />
+            <div className="min-w-0">
+              <p className="text-[11px] font-semibold text-sky-600 dark:text-sky-400 uppercase tracking-wider">Geschlecht</p>
+              <p className="text-sm font-medium mt-0.5">{getGenderEmoji(gender)} {getGenderLabel(gender)}</p>
+            </div>
+          </div>
+          {data?.yearPeak && (
+            <div className="flex items-start gap-3 p-3 rounded-lg bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/20 border border-amber-100 dark:border-amber-800/30">
+              <TrendingUp className="w-5 h-5 text-amber-500 mt-0.5 shrink-0" />
+              <div className="min-w-0">
+                <p className="text-[11px] font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-wider">Beliebtheitshoch</p>
+                <p className="text-sm font-medium mt-0.5">{data.yearPeak}</p>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Score bars */}
@@ -172,6 +180,17 @@ export function NameResultCard({ data, aiResult, isAI = false }: NameResultCardP
           <p className="text-sm leading-relaxed">{explanation}</p>
         </div>
       )}
+
+      {/* Share CTA */}
+      <div className="px-6 py-4 border-t border-border bg-gradient-to-r from-[hsl(340,75%,55%/0.05)] to-[hsl(262,60%,55%/0.05)]">
+        <button
+          onClick={handleShare}
+          className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-gradient-to-r from-[hsl(340,75%,55%)] to-[hsl(262,60%,55%)] text-white text-sm font-medium hover:opacity-90 transition-opacity"
+        >
+          <Heart className="w-4 h-4" />
+          Ergebnis mit anderen werdenden Eltern teilen
+        </button>
+      </div>
     </motion.div>
   )
 }

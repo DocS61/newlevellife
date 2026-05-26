@@ -3,7 +3,8 @@
 import { motion } from 'framer-motion'
 import { ScoreBar } from './score-bar'
 import { ScoreRing } from './score-ring'
-import { Music, Type, Mic, Timer, Hash, Sparkles, Users } from 'lucide-react'
+import { Sparkles, Users, Share2, Heart } from 'lucide-react'
+import { toast } from 'sonner'
 
 export interface ComboResult {
   firstName: string
@@ -39,7 +40,6 @@ function getRiskLabel(score: number): string {
 export function ComboResultCard({ data }: { data: ComboResult }) {
   const p = data.phonetic
 
-  // Combined overall including cultural fit
   const hasCultural = data.culturalFit != null
   const culturalScore = data.culturalFit?.score ?? 0
   const combinedOverall = hasCultural
@@ -80,21 +80,21 @@ export function ComboResultCard({ data }: { data: ComboResult }) {
         </p>
       </div>
 
-      {/* Phonetic scores */}
+      {/* Phonetic scores with simple German labels */}
       <div className="px-6 py-5 space-y-4">
-        <ScoreBar score={p.rhymeScore} maxScore={10} label="Reimgefahr" description={p.rhymeNote} />
-        <ScoreBar score={p.initialsScore} maxScore={10} label="Initialen-Check" description={p.initialsNote} />
-        <ScoreBar score={p.alliterationScore} maxScore={10} label="Alliteration" description={p.alliterationNote} />
-        <ScoreBar score={p.assonanceScore} maxScore={10} label="Assonanz (Vokalharmonie)" description={p.assonanceNote} />
-        <ScoreBar score={p.rhythmScore} maxScore={10} label="Silbenrhythmus" description={p.rhythmNote} />
+        <ScoreBar score={p.rhymeScore} maxScore={10} label="Reimt es sich?" description={p.rhymeNote} />
+        <ScoreBar score={p.initialsScore} maxScore={10} label="Abkürzung problematisch?" description={p.initialsNote} />
+        <ScoreBar score={p.alliterationScore} maxScore={10} label="Gleicher Anfangslaut" description={p.alliterationNote} />
+        <ScoreBar score={p.assonanceScore} maxScore={10} label="Klangvielfalt" description={p.assonanceNote} />
+        <ScoreBar score={p.rhythmScore} maxScore={10} label="Sprechrhythmus" description={p.rhythmNote} />
       </div>
 
       {/* Cultural fit (LLM result) */}
       {data.culturalFit && (
-        <div className="px-6 py-4 border-t border-border bg-muted/20">
-          <div className="flex items-center gap-2 mb-2">
+        <div className="px-6 py-4 border-t border-border bg-gradient-to-r from-violet-50/50 to-indigo-50/50 dark:from-violet-950/20 dark:to-indigo-950/20">
+          <div className="flex items-center gap-2 mb-3">
             <Sparkles className="w-4 h-4 text-[hsl(262,60%,55%)]" />
-            <p className="text-sm font-semibold">Kultureller Stilbruch</p>
+            <p className="text-sm font-semibold">Passt der Vorname zum Nachnamen?</p>
           </div>
           <ScoreBar
             score={data.culturalFit.score}

@@ -252,11 +252,11 @@ export function NameSearch() {
           <button
             type="button"
             onClick={() => setShowSurname(!showSurname)}
-            className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors mx-auto"
+            className="inline-flex items-center gap-2 text-sm font-medium text-[hsl(262,60%,55%)] hover:text-[hsl(262,60%,45%)] transition-colors mx-auto px-3 py-1.5 rounded-lg bg-[hsl(262,60%,55%/0.08)] hover:bg-[hsl(262,60%,55%/0.15)] border border-[hsl(262,60%,55%/0.2)]"
           >
-            <Users className="w-3.5 h-3.5" />
-            Nachnamen für Kombinations-Check hinzufügen
-            {showSurname ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
+            <Users className="w-4 h-4" />
+            {showSurname ? 'Nachname ausblenden' : '+ Nachname für Kombinations-Check'}
+            {showSurname ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
           </button>
           <AnimatePresence>
             {showSurname && (
@@ -266,16 +266,21 @@ export function NameSearch() {
                 exit={{ opacity: 0, height: 0 }}
                 className="overflow-hidden"
               >
-                <input
-                  type="text"
-                  value={surname}
-                  onChange={(e) => setSurname(e.target.value)}
-                  placeholder="Nachname (optional)"
-                  className="w-full h-12 pl-4 pr-4 mt-2 rounded-xl bg-card border border-border text-sm font-medium placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-[hsl(262,60%,55%)] focus:border-transparent transition-all"
-                  style={{ boxShadow: 'var(--shadow-sm)' }}
-                />
-                <p className="text-[11px] text-muted-foreground mt-1.5 px-1">
-                  Wir prüfen Klangharmonie, Alliteration, Reimgefahr, Silbenrhythmus, Initialen und kulturelle Passung.
+                <div className="relative mt-3">
+                  <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                    <Users className="w-4 h-4 text-muted-foreground" />
+                  </div>
+                  <input
+                    type="text"
+                    value={surname}
+                    onChange={(e) => setSurname(e.target.value)}
+                    placeholder="Nachname eingeben..."
+                    className="w-full h-12 pl-11 pr-4 rounded-xl bg-card border border-[hsl(262,60%,55%/0.3)] text-base font-medium placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-[hsl(262,60%,55%)] focus:border-transparent transition-all"
+                    style={{ boxShadow: 'var(--shadow-sm)' }}
+                  />
+                </div>
+                <p className="text-xs text-muted-foreground mt-2 px-1">
+                  Wir prüfen, ob sich die Namen reimen, wie sie zusammen klingen, ob die Abkürzung problematisch ist und ob Vorname und Nachname kulturell zusammenpassen.
                 </p>
               </motion.div>
             )}
