@@ -11,7 +11,7 @@ WORKDIR /app
 COPY package.coolify.json ./package.json
 COPY prisma/schema.coolify.prisma ./prisma/schema.prisma
 
-# Dependencies installieren
+# Dependencies installieren (erzeugt yarn.lock)
 RUN yarn install
 
 # Prisma Client generieren
@@ -22,7 +22,12 @@ FROM node:20-alpine AS builder
 RUN apk add --no-cache libc6-compat openssl
 WORKDIR /app
 
+# node_modules UND yarn.lock vom deps-Stage kopieren
 COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/yarn.lock ./yarn.lock
+COPY --from=deps /app/package.json ./package.json
+
+# Quellcode kopieren
 COPY . .
 
 # Standalone next.config verwenden
