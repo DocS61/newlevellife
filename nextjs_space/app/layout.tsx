@@ -22,7 +22,7 @@ export const metadata = {
   openGraph: {
     title: 'Namen-Reue-Rechner | Babynamen analysieren & bewerten',
     description: 'Wird dein Kind seinen Namen bereuen? Analysiere jeden Babynamen auf Mobbing-Risiko, Karrierewirkung und Trends.',
-    images: ['/og-image.png'],
+    images: ['/api/og?name=Namen-Reue-Rechner&score=0&origin=&meaning=Wird%20dein%20Kind%20seinen%20Namen%20bereuen%3F'],
     type: 'website',
     locale: 'de_DE',
   },
