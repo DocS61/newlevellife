@@ -2,11 +2,8 @@ export const dynamic = 'force-dynamic';
 
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
-import { readFileSync } from 'fs';
-import path from 'path';
 
 export async function GET(request: Request) {
-  // Simple auth check
   const { searchParams } = new URL(request.url);
   const key = searchParams.get('key');
   if (key !== 'seed2026namensreue') {
@@ -14,15 +11,13 @@ export async function GET(request: Request) {
   }
 
   try {
-    // Try to read from public folder
-    let names: any[];
-    try {
-      const filePath = path.join(process.cwd(), 'public', 'seed-data.json');
-      const data = readFileSync(filePath, 'utf-8');
-      names = JSON.parse(data);
-    } catch {
+    // Fetch seed data from public folder via HTTP
+    const baseUrl = process.env.NEXTAUTH_URL || `http://localhost:${process.env.PORT || 3000}`;
+    const res = await fetch(`${baseUrl}/seed-data.json`);
+    if (!res.ok) {
       return NextResponse.json({ error: 'seed-data.json not found' }, { status: 500 });
     }
+    const names: any[] = await res.json();
 
     let created = 0;
     let skipped = 0;
