@@ -7,9 +7,9 @@ interface AdPlaceholderProps {
 
 export function AdPlaceholder({ position, className = '' }: AdPlaceholderProps) {
   const heights: Record<string, string> = {
-    'hero-below': 'h-[90px]',
+    'hero-below': 'h-[250px]',
     'between-results': 'h-[250px]',
-    'sidebar': 'h-[600px]',
+    'sidebar': 'h-[250px]',
   }
 
   return (
