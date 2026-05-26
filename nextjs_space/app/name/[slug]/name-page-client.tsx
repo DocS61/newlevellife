@@ -282,6 +282,22 @@ export function NamePageClient({ nameData, relatedNames }: NamePageClientProps) 
             </div>
           </div>
         </div>
+
+        {/* Bottom CTA to homepage */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="mt-10 text-center"
+        >
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Zurück zur Startseite – Weitere Namen analysieren
+          </Link>
+        </motion.div>
       </main>
 
       <Footer />

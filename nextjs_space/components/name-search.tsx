@@ -5,6 +5,7 @@ import { NameData, AIAnalysisResult, RecentSearch } from '@/lib/types'
 import { Search, Shuffle, Loader2, Sparkles, ChevronDown, ChevronUp, Users } from 'lucide-react'
 import { NameResultCard } from './name-result-card'
 import { ComboResultCard, ComboResult } from './combo-result-card'
+import { NameSuggestionsTrigger, NameSuggestionsResult } from './name-suggestions'
 import { motion, AnimatePresence } from 'framer-motion'
 import { toast } from 'sonner'
 
@@ -21,6 +22,8 @@ export function NameSearch() {
   const [loading, setLoading] = useState(false)
   const [comboLoading, setComboLoading] = useState(false)
   const [progress, setProgress] = useState(0)
+  const [suggestionsData, setSuggestionsData] = useState<{ boys: any[]; girls: any[]; aiReasoning: string } | null>(null)
+  const [suggestionsLoading, setSuggestionsLoading] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
   const suggestionsRef = useRef<HTMLDivElement>(null)
 
@@ -59,6 +62,33 @@ export function NameSearch() {
       localStorage.setItem('nrc-recent', JSON.stringify(updated))
       window.dispatchEvent(new Event('nrc-recent-updated'))
     } catch { /* ignore */ }
+  }
+
+  const fetchNameSuggestions = async () => {
+    const sn = surname.trim()
+    if (!sn || sn.length < 2) {
+      toast.error('Bitte gib zuerst einen Nachnamen ein.')
+      return
+    }
+    setSuggestionsLoading(true)
+    setSuggestionsData(null)
+    try {
+      const res = await fetch('/api/suggest-names', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ lastName: sn }),
+      })
+      if (res.ok) {
+        const data = await res.json()
+        setSuggestionsData({ boys: data.boys, girls: data.girls, aiReasoning: data.aiReasoning })
+      } else {
+        toast.error('Namensvorschläge konnten nicht geladen werden.')
+      }
+    } catch {
+      toast.error('Netzwerkfehler bei den Namensvorschlägen.')
+    } finally {
+      setSuggestionsLoading(false)
+    }
   }
 
   const runComboAnalysis = async (firstName: string) => {
@@ -285,6 +315,14 @@ export function NameSearch() {
                 <p className="text-xs text-muted-foreground/70 mt-1 px-1 flex items-center gap-1">
                   <span>🔒</span> Dein Nachname wird nicht gespeichert – er wird nur einmalig für die Analyse verarbeitet.
                 </p>
+
+                {/* Suggestion Trigger */}
+                {surname.trim().length >= 2 && (
+                  <NameSuggestionsTrigger
+                    lastName={surname.trim()}
+                    onRequest={fetchNameSuggestions}
+                  />
+                )}
               </motion.div>
             )}
           </AnimatePresence>
@@ -361,6 +399,21 @@ export function NameSearch() {
               <ComboResultCard data={comboResult} />
             )}
           </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Name Suggestions */}
+      <AnimatePresence>
+        {(suggestionsLoading || suggestionsData) && (
+          <div className="max-w-xl mx-auto">
+            <NameSuggestionsResult
+              boys={suggestionsData?.boys ?? []}
+              girls={suggestionsData?.girls ?? []}
+              lastName={surname.trim()}
+              aiReasoning={suggestionsData?.aiReasoning ?? ''}
+              loading={suggestionsLoading}
+            />
+          </div>
         )}
       </AnimatePresence>
     </div>
