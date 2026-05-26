@@ -42,16 +42,16 @@ Soweit die Verarbeitung zur Wahrung eines berechtigten Interesses unseres Untern
 Diese Daten werden nicht mit anderen Datenquellen zusammengeführt. Grundlage für die Datenverarbeitung ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der technischen Bereitstellung und Sicherheit der Website).`
     },
     {
-      heading: '5. Consent Management (Cookiebot)',
-      text: `Diese Website nutzt die Consent-Management-Plattform Cookiebot der Firma Usercentrics A/S, Havnegade 39, 1058 Kopenhagen, Dänemark, um Ihre Einwilligung zur Speicherung bestimmter Cookies und zur Datenverarbeitung einzuholen und diese rechtskonform zu dokumentieren.
+      heading: '5. Consent Management (Usercentrics / eRecht24)',
+      text: `Diese Website nutzt die Consent-Management-Plattform Usercentrics der Firma Usercentrics GmbH, Sendlinger Straße 7, 80331 München, Deutschland, eingebunden über eRecht24, um Ihre Einwilligung zur Speicherung bestimmter Cookies und zur Datenverarbeitung einzuholen und diese rechtskonform zu dokumentieren.
 
-Beim Aufruf unserer Website wird eine Verbindung zu Servern von Cookiebot hergestellt, um Ihre Einwilligungen und Widerrufe zur Cookie-Nutzung zu ermitteln. Cookiebot speichert einen Cookie in Ihrem Browser (CookieConsent), um Ihnen die erteilten Einwilligungen bzw. deren Widerruf zuordnen zu können.
+Beim Aufruf unserer Website wird eine Verbindung zu Servern von Usercentrics hergestellt, um Ihre Einwilligungen und Widerrufe zur Cookie-Nutzung zu ermitteln. Usercentrics speichert einen Cookie in Ihrem Browser, um Ihnen die erteilten Einwilligungen bzw. deren Widerruf zuordnen zu können.
 
-Die erfassten Daten werden gespeichert, bis Sie uns zur Löschung auffordern, den Cookiebot-Cookie selbst löschen oder der Zweck für die Datenspeicherung entfällt. Zwingende gesetzliche Aufbewahrungspflichten bleiben unberührt.
+Die erfassten Daten werden gespeichert, bis Sie uns zur Löschung auffordern, den Usercentrics-Cookie selbst löschen oder der Zweck für die Datenspeicherung entfällt. Zwingende gesetzliche Aufbewahrungspflichten bleiben unberührt.
 
-Der Einsatz von Cookiebot erfolgt, um die gesetzlich vorgeschriebenen Einwilligungen für den Einsatz von Cookies einzuholen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. c DSGVO (rechtliche Verpflichtung).
+Der Einsatz von Usercentrics erfolgt, um die gesetzlich vorgeschriebenen Einwilligungen für den Einsatz von Cookies einzuholen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. c DSGVO (rechtliche Verpflichtung).
 
-Ein Auftragsverarbeitungsvertrag (AVV) mit Cookiebot ist abgeschlossen.`
+Ein Auftragsverarbeitungsvertrag (AVV) mit Usercentrics ist abgeschlossen. Usercentrics ist als zertifizierte Consent-Management-Plattform (CMP) nach dem IAB Transparency & Consent Framework (TCF 2.2) anerkannt.`
     },
     {
       heading: '6. Cookies',
@@ -59,7 +59,7 @@ Ein Auftragsverarbeitungsvertrag (AVV) mit Cookiebot ist abgeschlossen.`
 
 Technisch notwendige Cookies werden auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO gesetzt. Alle übrigen Cookies (z. B. für Analyse oder Werbung) werden nur nach Ihrer ausdrücklichen Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO gesetzt.
 
-Sie können Ihre Einwilligung jederzeit über das Cookiebot-Banner widerrufen. Bereits gesetzte Cookies können Sie in Ihren Browsereinstellungen löschen.
+Sie können Ihre Einwilligung jederzeit über das Usercentrics-Banner widerrufen. Bereits gesetzte Cookies können Sie in Ihren Browsereinstellungen löschen.
 
 Zusätzlich speichern wir folgende Informationen lokal in Ihrem Browser (localStorage):
 
@@ -76,11 +76,11 @@ Google Analytics verwendet Cookies, die eine Analyse der Benutzung der Website e
 
 Wir verwenden Google Analytics mit aktivierter IP-Anonymisierung. Das bedeutet, Ihre IP-Adresse wird von Google innerhalb von Mitgliedstaaten der EU oder in anderen Vertragsstaaten des Abkommens über den EWR zuvor gekürzt.
 
-Google Analytics wird nur nach Ihrer ausdrücklichen Einwilligung über das Cookiebot-Banner aktiviert. Rechtsgrundlage ist Art. 6 Abs. 1 lit. a DSGVO.
+Google Analytics wird nur nach Ihrer ausdrücklichen Einwilligung über das Usercentrics-Banner aktiviert. Rechtsgrundlage ist Art. 6 Abs. 1 lit. a DSGVO.
 
 Wir haben mit Google einen Auftragsverarbeitungsvertrag abgeschlossen. Die Datenübertragung in die USA wird auf die EU-Standardvertragsklauseln gestützt.
 
-Sie können die Erfassung durch Google Analytics verhindern, indem Sie Ihre Einwilligung im Cookiebot-Banner verweigern oder nachträglich widerrufen. Alternativ können Sie das Browser-Add-on zur Deaktivierung von Google Analytics herunterladen: https://tools.google.com/dlpage/gaoptout
+Sie können die Erfassung durch Google Analytics verhindern, indem Sie Ihre Einwilligung im Usercentrics-Banner verweigern oder nachträglich widerrufen. Alternativ können Sie das Browser-Add-on zur Deaktivierung von Google Analytics herunterladen: https://tools.google.com/dlpage/gaoptout
 
 Mehr Informationen zum Umgang mit Nutzerdaten bei Google Analytics finden Sie in der Datenschutzerklärung von Google: https://policies.google.com/privacy`
     },
@@ -90,7 +90,7 @@ Mehr Informationen zum Umgang mit Nutzerdaten bei Google Analytics finden Sie in
 
 Google AdSense verwendet Cookies und sogenannte Web Beacons, um die Website-Nutzung zu analysieren und relevante Werbeanzeigen auszuliefern. Die durch Cookies und Web Beacons erzeugten Informationen über Ihre Benutzung dieser Website (einschließlich Ihrer IP-Adresse) und die Auslieferung von Werbeformaten werden an einen Server von Google in den USA übertragen und dort gespeichert.
 
-Google AdSense wird nur nach Ihrer ausdrücklichen Einwilligung über das Cookiebot-Banner aktiviert. Rechtsgrundlage ist Art. 6 Abs. 1 lit. a DSGVO.
+Google AdSense wird nur nach Ihrer ausdrücklichen Einwilligung über das Usercentrics-Banner aktiviert. Rechtsgrundlage ist Art. 6 Abs. 1 lit. a DSGVO.
 
 Google kann diese Informationen an Dritte weitergeben, sofern dies gesetzlich vorgeschrieben ist oder soweit Dritte diese Daten im Auftrag von Google verarbeiten.
 
