@@ -1,4 +1,4 @@
-import { ImprintClient } from './imprint-client'
+import { ImprintClient } from './impressum-client'
 
 export default function ImprintPage() {
   return <ImprintClient />

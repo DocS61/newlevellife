@@ -263,8 +263,8 @@ export function NameSearch() {
       {/* Search form */}
       <form onSubmit={handleSubmit} className="relative w-full max-w-xl mx-auto">
         <div className="relative" ref={suggestionsRef}>
-          <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
-            <Search className="w-5 h-5 text-muted-foreground" />
+          <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none z-10">
+            <Search className="w-5 h-5 text-[hsl(340,75%,55%)]" />
           </div>
           <input
             ref={inputRef}
@@ -273,8 +273,8 @@ export function NameSearch() {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setQuery(e?.target?.value ?? ''); setShowSuggestions(true) }}
             onFocus={() => setShowSuggestions(true)}
             placeholder="Einen Vornamen eingeben..."
-            className="w-full h-14 pl-12 pr-4 rounded-xl bg-card border border-border text-base font-medium placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-[hsl(340,75%,55%)] focus:border-transparent transition-all"
-            style={{ boxShadow: 'var(--shadow-md)' }}
+            className="w-full h-16 pl-12 pr-4 rounded-2xl bg-white border-2 border-[hsl(340,75%,55%/0.3)] text-lg font-semibold placeholder:text-muted-foreground/50 placeholder:font-normal focus:outline-none focus:ring-4 focus:ring-[hsl(340,75%,55%/0.15)] focus:border-[hsl(340,75%,55%)] transition-all"
+            style={{ boxShadow: '0 4px 20px rgba(0,0,0,0.08), 0 0 0 1px hsl(340,75%,55%,0.1)' }}
           />
 
           {/* Suggestions dropdown */}
@@ -405,20 +405,20 @@ export function NameSearch() {
           <button
             type="submit"
             disabled={loading || !(query?.trim())}
-            className="px-6 py-3 rounded-xl font-medium text-sm bg-gradient-to-r from-[hsl(340,75%,55%)] to-[hsl(262,60%,55%)] text-white hover:opacity-90 disabled:opacity-50 transition-all flex items-center gap-2"
-            style={{ boxShadow: 'var(--shadow-md)' }}
+            className="px-8 py-3.5 rounded-2xl font-semibold text-base bg-gradient-to-r from-[hsl(340,75%,55%)] to-[hsl(262,60%,55%)] text-white hover:shadow-lg hover:scale-[1.02] disabled:opacity-50 disabled:hover:scale-100 transition-all flex items-center gap-2"
+            style={{ boxShadow: '0 4px 15px hsl(340,75%,55%,0.35)' }}
           >
-            {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Search className="w-4 h-4" />}
+            {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Search className="w-5 h-5" />}
             Namen analysieren
           </button>
           <button
             type="button"
             onClick={handleRandom}
             disabled={loading}
-            className="px-6 py-3 rounded-xl font-medium text-sm bg-card border border-border hover:bg-accent disabled:opacity-50 transition-all flex items-center gap-2"
-            style={{ boxShadow: 'var(--shadow-sm)' }}
+            className="px-8 py-3.5 rounded-2xl font-semibold text-base bg-white border-2 border-border hover:border-[hsl(262,60%,55%/0.3)] hover:bg-accent disabled:opacity-50 transition-all flex items-center gap-2"
+            style={{ boxShadow: '0 2px 10px rgba(0,0,0,0.06)' }}
           >
-            <Shuffle className="w-4 h-4" />
+            <Shuffle className="w-5 h-5" />
             Zufälliger Name
           </button>
         </div>

@@ -25,10 +25,10 @@ export function Header() {
           <Link href="/" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent transition-colors">
             Startseite
           </Link>
-          <Link href="/privacy" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent transition-colors">
+          <Link href="/datenschutz" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent transition-colors">
             Datenschutz
           </Link>
-          <Link href="/imprint" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent transition-colors">
+          <Link href="/impressum" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent transition-colors">
             Impressum
           </Link>
         </nav>
@@ -57,10 +57,10 @@ export function Header() {
               <Link href="/" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent" onClick={() => setMenuOpen(false)}>
                 Startseite
               </Link>
-              <Link href="/privacy" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent" onClick={() => setMenuOpen(false)}>
+              <Link href="/datenschutz" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent" onClick={() => setMenuOpen(false)}>
                 Datenschutz
               </Link>
-              <Link href="/imprint" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent" onClick={() => setMenuOpen(false)}>
+              <Link href="/impressum" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent" onClick={() => setMenuOpen(false)}>
                 Impressum
               </Link>
             </nav>

@@ -17,10 +17,10 @@ export function Footer() {
             <Heart className="w-3.5 h-3.5 text-[hsl(340,75%,55%)] inline" />
           </p>
           <nav className="flex items-center gap-4">
-            <Link href="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link href="/datenschutz" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Datenschutz
             </Link>
-            <Link href="/imprint" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link href="/impressum" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Impressum
             </Link>
           </nav>
