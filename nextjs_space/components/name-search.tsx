@@ -282,6 +282,9 @@ export function NameSearch() {
                 <p className="text-xs text-muted-foreground mt-2 px-1">
                   Wir prüfen, ob sich die Namen reimen, wie sie zusammen klingen, ob die Abkürzung problematisch ist und ob Vorname und Nachname kulturell zusammenpassen.
                 </p>
+                <p className="text-xs text-muted-foreground/70 mt-1 px-1 flex items-center gap-1">
+                  <span>🔒</span> Dein Nachname wird nicht gespeichert – er wird nur einmalig für die Analyse verarbeitet.
+                </p>
               </motion.div>
             )}
           </AnimatePresence>
@@ -329,7 +332,7 @@ export function NameSearch() {
                   transition={{ duration: 0.3 }}
                 />
               </div>
-              {isAI && <p className="text-xs text-muted-foreground mt-2">Dieser Name ist nicht in unserer Datenbank. Eine KI-gestützte Analyse wird durchgeführt.</p>}
+              {isAI && <p className="text-xs text-muted-foreground mt-2">Unsere KI erstellt gerade eine individuelle Analyse...</p>}
             </div>
           </motion.div>
         )}

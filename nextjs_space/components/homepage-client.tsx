@@ -31,7 +31,7 @@ const faqData = [
   },
   {
     q: 'Wie viele Namen sind in der Datenbank?',
-    a: 'Unsere Datenbank enthält über 160 sorgfältig analysierte Namen aus dem DACH-Raum (Deutschland, Österreich, Schweiz). Jeder Name wurde individuell bewertet. Für Namen, die nicht in der Datenbank sind, erstellt unsere KI eine Echtzeitanalyse auf Basis der gleichen Bewertungskriterien.'
+    a: 'Unsere Datenbank enthält über 350 sorgfältig analysierte Namen aus dem DACH-Raum (Deutschland, Österreich, Schweiz). Jeder Name wurde individuell bewertet. Für Namen, die nicht in der Datenbank sind, erstellt unsere KI eine Echtzeitanalyse auf Basis der gleichen Bewertungskriterien.'
   },
   {
     q: 'Ist die Analyse wirklich kostenlos?',
