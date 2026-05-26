@@ -40,7 +40,7 @@ export function NamePageClient({ nameData, relatedNames }: NamePageClientProps) 
             className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
-            Zur\u00fcck zur Startseite
+            Zurück zur Startseite
           </Link>
         </nav>
 
@@ -64,9 +64,9 @@ export function NamePageClient({ nameData, relatedNames }: NamePageClientProps) 
               </h2>
               <div className="text-sm text-muted-foreground leading-relaxed space-y-3">
                 <p>
-                  <strong>{nameData.name}</strong> ist ein {nameData.gender === 'm' ? 'm\u00e4nnlicher' : nameData.gender === 'f' ? 'weiblicher' : 'geschlechtsneutraler'} Vorname
+                  <strong>{nameData.name}</strong> ist ein {nameData.gender === 'm' ? 'männlicher' : nameData.gender === 'f' ? 'weiblicher' : 'geschlechtsneutraler'} Vorname
                   mit {nameData.origin.toLowerCase().includes('deutsch') ? 'deutschen' : nameData.origin.toLowerCase()} Wurzeln.
-                  Die Bedeutung des Namens ist \u201e{nameData.meaningDe}\u201c.
+                  Die Bedeutung des Namens ist „{nameData.meaningDe}“.
                 </p>
                 <p>
                   In unserer Analyse erreicht {nameData.name} einen Gesamt-Reue-Score von <strong className={getScoreColor(nameData.overallRegret)}>{nameData.overallRegret} von 100</strong>.
@@ -74,7 +74,7 @@ export function NamePageClient({ nameData, relatedNames }: NamePageClientProps) 
                     ? ' Das bedeutet, dieser Name ist eine ausgezeichnete Wahl mit sehr geringem Risikopotenzial.'
                     : nameData.overallRegret <= 60
                     ? ' Das deutet auf einige Aspekte hin, die Eltern bedenken sollten, insgesamt aber ein akzeptabler Name.'
-                    : ' Das signalisiert erh\u00f6htes Risikopotenzial in mehreren Kategorien. Eine sorgf\u00e4ltige Abw\u00e4gung ist empfehlenswert.'}
+                    : ' Das signalisiert erhöhtes Risikopotenzial in mehreren Kategorien. Eine sorgfältige Abwägung ist empfehlenswert.'}
                 </p>
                 {nameData.yearPeak && (
                   <p>
@@ -83,7 +83,7 @@ export function NamePageClient({ nameData, relatedNames }: NamePageClientProps) 
                       ? ' Trotzdem gilt er als zeitlos und nicht an einen kurzlebigen Trend gebunden.'
                       : nameData.trendScore <= 6
                       ? ' Er zeigt moderate Schwankungen in der Beliebtheit.'
-                      : ' Er ist stark mit einem bestimmten Zeitraum assoziiert und k\u00f6nnte als Modename wahrgenommen werden.'}
+                      : ' Er ist stark mit einem bestimmten Zeitraum assoziiert und könnte als Modename wahrgenommen werden.'}
                   </p>
                 )}
                 <p>{nameData.explanationDe}</p>
@@ -105,7 +105,7 @@ export function NamePageClient({ nameData, relatedNames }: NamePageClientProps) 
                 style={{ boxShadow: 'var(--shadow-sm)' }}
               >
                 <div className="px-5 py-4 border-b border-border">
-                  <h3 className="font-display font-semibold text-sm">\u00c4hnliche Namen</h3>
+                  <h3 className="font-display font-semibold text-sm">Ähnliche Namen</h3>
                 </div>
                 <div className="divide-y divide-border">
                   {relatedNames.map(name => (
@@ -151,7 +151,7 @@ export function NamePageClient({ nameData, relatedNames }: NamePageClientProps) 
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'Article',
-            headline: `${nameData.name} \u2013 Namensanalyse & Bedeutung`,
+            headline: `${nameData.name} – Namensanalyse & Bedeutung`,
             description: `Detaillierte Analyse des Babynamens ${nameData.name}: Herkunft, Bedeutung und Risikobewertung.`,
             author: {
               '@type': 'Organization',

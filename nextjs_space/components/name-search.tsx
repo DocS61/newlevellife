@@ -2,19 +2,24 @@
 
 import { useState, useCallback, useRef, useEffect } from 'react'
 import { NameData, AIAnalysisResult, RecentSearch } from '@/lib/types'
-import { Search, Shuffle, Loader2, Sparkles } from 'lucide-react'
+import { Search, Shuffle, Loader2, Sparkles, ChevronDown, ChevronUp, Users } from 'lucide-react'
 import { NameResultCard } from './name-result-card'
+import { ComboResultCard, ComboResult } from './combo-result-card'
 import { motion, AnimatePresence } from 'framer-motion'
 import { toast } from 'sonner'
 
 export function NameSearch() {
   const [query, setQuery] = useState('')
+  const [surname, setSurname] = useState('')
+  const [showSurname, setShowSurname] = useState(false)
   const [suggestions, setSuggestions] = useState<NameData[]>([])
   const [showSuggestions, setShowSuggestions] = useState(false)
   const [result, setResult] = useState<NameData | null>(null)
   const [aiResult, setAiResult] = useState<AIAnalysisResult | null>(null)
+  const [comboResult, setComboResult] = useState<ComboResult | null>(null)
   const [isAI, setIsAI] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [comboLoading, setComboLoading] = useState(false)
   const [progress, setProgress] = useState(0)
   const inputRef = useRef<HTMLInputElement>(null)
   const suggestionsRef = useRef<HTMLDivElement>(null)
@@ -56,12 +61,35 @@ export function NameSearch() {
     } catch { /* ignore */ }
   }
 
+  const runComboAnalysis = async (firstName: string) => {
+    const sn = surname.trim()
+    if (!sn) return
+    setComboLoading(true)
+    setComboResult(null)
+    try {
+      const res = await fetch('/api/analyze-combo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ firstName, lastName: sn }),
+      })
+      if (res.ok) {
+        const data = await res.json()
+        setComboResult(data)
+      }
+    } catch (err) {
+      console.error('Combo analysis error:', err)
+    } finally {
+      setComboLoading(false)
+    }
+  }
+
   const analyzeFromDB = async (nameData: NameData) => {
     setResult(nameData)
     setAiResult(null)
     setIsAI(false)
     setLoading(false)
     addRecentSearch(nameData?.name ?? '', nameData?.overallRegret ?? 0)
+    runComboAnalysis(nameData.name)
   }
 
   const analyzeWithAI = async (name: string) => {
@@ -70,6 +98,7 @@ export function NameSearch() {
     setResult(null)
     setAiResult(null)
     setIsAI(true)
+    setComboResult(null)
 
     try {
       const response = await fetch('/api/analyze', {
@@ -106,6 +135,7 @@ export function NameSearch() {
                 setProgress(100)
                 setLoading(false)
                 addRecentSearch(name, parsed?.result?.overallRegret ?? 0)
+                runComboAnalysis(name)
                 return
               } else if (parsed?.status === 'error') {
                 throw new Error(parsed?.message ?? 'Analysis failed')
@@ -130,6 +160,7 @@ export function NameSearch() {
     const trimmed = query?.trim() ?? ''
     if (!trimmed) return
     setShowSuggestions(false)
+    setComboResult(null)
 
     setLoading(true)
     try {
@@ -178,7 +209,7 @@ export function NameSearch() {
             value={query}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setQuery(e?.target?.value ?? ''); setShowSuggestions(true) }}
             onFocus={() => setShowSuggestions(true)}
-            placeholder="Einen Namen eingeben..."
+            placeholder="Einen Vornamen eingeben..."
             className="w-full h-14 pl-12 pr-4 rounded-xl bg-card border border-border text-base font-medium placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-[hsl(340,75%,55%)] focus:border-transparent transition-all"
             style={{ boxShadow: 'var(--shadow-md)' }}
           />
@@ -211,6 +242,41 @@ export function NameSearch() {
                     </span>
                   </button>
                 ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* Optional surname toggle */}
+        <div className="mt-3">
+          <button
+            type="button"
+            onClick={() => setShowSurname(!showSurname)}
+            className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors mx-auto"
+          >
+            <Users className="w-3.5 h-3.5" />
+            Nachnamen für Kombinations-Check hinzufügen
+            {showSurname ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
+          </button>
+          <AnimatePresence>
+            {showSurname && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                className="overflow-hidden"
+              >
+                <input
+                  type="text"
+                  value={surname}
+                  onChange={(e) => setSurname(e.target.value)}
+                  placeholder="Nachname (optional)"
+                  className="w-full h-12 pl-4 pr-4 mt-2 rounded-xl bg-card border border-border text-sm font-medium placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-[hsl(262,60%,55%)] focus:border-transparent transition-all"
+                  style={{ boxShadow: 'var(--shadow-sm)' }}
+                />
+                <p className="text-[11px] text-muted-foreground mt-1.5 px-1">
+                  Wir prüfen Klangharmonie, Alliteration, Reimgefahr, Silbenrhythmus, Initialen und kulturelle Passung.
+                </p>
               </motion.div>
             )}
           </AnimatePresence>
@@ -270,9 +336,22 @@ export function NameSearch() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="max-w-xl mx-auto mt-8"
+            className="max-w-xl mx-auto mt-8 space-y-6"
           >
             <NameResultCard data={result} aiResult={aiResult} isAI={isAI} />
+
+            {/* Combo loading */}
+            {comboLoading && (
+              <div className="bg-card rounded-xl border border-border p-5 text-center">
+                <Loader2 className="w-5 h-5 text-[hsl(262,60%,55%)] mx-auto mb-2 animate-spin" />
+                <p className="text-sm text-muted-foreground">Kombinations-Check wird durchgeführt...</p>
+              </div>
+            )}
+
+            {/* Combo result */}
+            {comboResult && !comboLoading && (
+              <ComboResultCard data={comboResult} />
+            )}
           </motion.div>
         )}
       </AnimatePresence>

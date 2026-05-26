@@ -14,43 +14,47 @@ import { motion } from 'framer-motion'
 const faqData = [
   {
     q: 'Was genau misst der Namen-Reue-Rechner?',
-    a: 'Der Namen-Reue-Rechner analysiert jeden Babynamen in vier wissenschaftlich fundierten Kategorien: Mobbing-Risiko (Potenzial f\u00fcr H\u00e4nseleien), Aussprache-Schwierigkeit (internationale Verst\u00e4ndlichkeit), Karriere-Risiko (berufliche Wahrnehmung) und Trend-Risiko (Zeitlosigkeit vs. Modename). Aus diesen vier Werten wird ein Gesamt-Reue-Score von 0 bis 100 berechnet.'
+    a: 'Der Namen-Reue-Rechner analysiert jeden Babynamen in vier Kategorien: Mobbing-Risiko (Potenzial für Hänseleien), Aussprache-Schwierigkeit (internationale Verständlichkeit), Karriere-Risiko (berufliche Wahrnehmung) und Trend-Risiko (Zeitlosigkeit vs. Modename). Aus diesen vier Werten wird ein Gesamt-Reue-Score von 0 bis 100 berechnet.'
   },
   {
     q: 'Wie wird der Gesamt-Reue-Score berechnet?',
-    a: 'Der Gesamt-Reue-Score (0\u2013100) ist ein gewichteter Durchschnitt der vier Einzelkategorien. Mobbing-Risiko wird am st\u00e4rksten gewichtet, da es die gr\u00f6\u00dften emotionalen Auswirkungen hat. Ein niedriger Score bedeutet wenig Risiko \u2013 der Name ist eine sichere Wahl. Ein hoher Score deutet auf potenzielle Probleme hin.'
+    a: 'Der Gesamt-Reue-Score (0–100) ist ein gewichteter Durchschnitt der vier Einzelkategorien. Mobbing-Risiko wird am stärksten gewichtet, da es die größten emotionalen Auswirkungen hat. Ein niedriger Score bedeutet wenig Risiko – der Name ist eine sichere Wahl. Ein hoher Score deutet auf potenzielle Probleme hin.'
   },
   {
     q: 'Wie lese ich die Einzelbewertungen richtig?',
-    a: 'Alle Scores folgen dem Prinzip: Je niedriger, desto besser. Gr\u00fcn (0\u20133) bedeutet \u201eunbedenklich\u201c, Gelb (4\u20136) hei\u00dft \u201ebeachtenswert\u201c und Rot (7\u201310) signalisiert \u201ekritisch\u201c. Ein Mobbing-Risiko von 2/10 bedeutet also, dass der Name kaum Angriffs\u00e4che f\u00fcr H\u00e4nseleien bietet.'
+    a: 'Alle Scores folgen dem Prinzip: Je niedriger, desto besser. Grün (0–3) bedeutet „unbedenklich", Gelb (4–6) heißt „beachtenswert" und Rot (7–10) signalisiert „kritisch". Ein Mobbing-Risiko von 2/10 bedeutet also, dass der Name kaum Angriffsfläche für Hänseleien bietet.'
   },
   {
     q: 'Wie viele Namen sind in der Datenbank?',
-    a: 'Unsere Datenbank enth\u00e4lt \u00fcber 160 sorgf\u00e4ltig analysierte Namen aus dem DACH-Raum (Deutschland, \u00d6sterreich, Schweiz). Jeder Name wurde individuell bewertet. F\u00fcr Namen, die nicht in der Datenbank sind, erstellt unsere KI eine Echtzeitanalyse auf Basis der gleichen Bewertungskriterien.'
+    a: 'Unsere Datenbank enthält über 160 sorgfältig analysierte Namen aus dem DACH-Raum (Deutschland, Österreich, Schweiz). Jeder Name wurde individuell bewertet. Für Namen, die nicht in der Datenbank sind, erstellt unsere KI eine Echtzeitanalyse auf Basis der gleichen Bewertungskriterien.'
   },
   {
     q: 'Ist die Analyse wirklich kostenlos?',
-    a: 'Ja, die Nutzung des Namen-Reue-Rechners ist vollst\u00e4ndig kostenlos. Du kannst so viele Namen analysieren, wie du m\u00f6chtest \u2013 ohne Registrierung und ohne versteckte Kosten.'
+    a: 'Ja, die Nutzung des Namen-Reue-Rechners ist vollständig kostenlos. Du kannst so viele Namen analysieren, wie du möchtest – ohne Registrierung und ohne versteckte Kosten.'
+  },
+  {
+    q: 'Kann ich auch prüfen, ob Vor- und Nachname zusammenpassen?',
+    a: 'Ja! Gib einfach den gewünschten Nachnamen im optionalen Feld unter dem Vornamen ein. Wir prüfen dann automatisch die Klangharmonie, Alliterationen, Reimgefahr, Silbenrhythmus und ob die Initialen ein unglückliches Kürzel ergeben.'
   },
   {
     q: 'Kann ich dem Ergebnis vertrauen?',
-    a: 'Die Analyse basiert auf linguistischen, kulturellen und statistischen Daten. Sie soll als Orientierungshilfe dienen, nicht als endg\u00fcltige Bewertung. Letztlich ist die Namenswahl eine sehr pers\u00f6nliche Entscheidung \u2013 unser Tool hilft dir, potenzielle Risiken zu erkennen, die du vielleicht \u00fcbersehen h\u00e4ttest.'
+    a: 'Die Analyse basiert auf linguistischen, kulturellen und statistischen Daten. Sie soll als Orientierungshilfe dienen, nicht als endgültige Bewertung. Letztlich ist die Namenswahl eine sehr persönliche Entscheidung – unser Tool hilft dir, potenzielle Risiken zu erkennen, die du vielleicht übersehen hättest.'
   },
 ]
 
 const funFacts = [
-  'In Deutschland d\u00fcrfen Standesbeamte einen Vornamen ablehnen, wenn er dem Kindeswohl schadet.',
-  'Der Name "Kevin" wird in Studien h\u00e4ufig mit niedrigeren Erwartungen von Lehrkr\u00e4ften assoziiert \u2013 das sogenannte \u201eKevinismus\u201c-Ph\u00e4nomen.',
+  'In Deutschland dürfen Standesbeamte einen Vornamen ablehnen, wenn er dem Kindeswohl schadet.',
+  'Der Name „Kevin" wird in Studien häufig mit niedrigeren Erwartungen von Lehrkräften assoziiert – das sogenannte „Kevinismus"-Phänomen.',
   'Emma und Noah sind seit Jahren die beliebtesten Babynamen in Deutschland.',
-  'In der Schweiz sind Namen wie Beat, Urs und Regula g\u00e4ngig \u2013 in Deutschland kennt sie kaum jemand.',
-  '\u00dcber 60% der Deutschen w\u00fcnschen sich r\u00fcckblickend, sich l\u00e4nger mit der Namenswahl besch\u00e4ftigt zu haben.',
-  'Kurze Namen mit 4\u20135 Buchstaben sind international am leichtesten auszusprechen.',
+  'In der Schweiz sind Namen wie Beat, Urs und Regula gängig – in Deutschland kennt sie kaum jemand.',
+  'Über 60 % der Deutschen wünschen sich rückblickend, sich länger mit der Namenswahl beschäftigt zu haben.',
+  'Kurze Namen mit 4–5 Buchstaben sind international am leichtesten auszusprechen.',
 ]
 
 export function HomepageClient() {
   const features = [
-    { icon: Shield, label: 'Mobbing-Risiko', desc: 'Wie hoch ist die Gefahr f\u00fcr H\u00e4nseleien?', color: 'hsl(0, 84%, 60%)' },
-    { icon: Globe, label: 'Aussprache-Schwierigkeit', desc: 'Ist der Name weltweit verst\u00e4ndlich?', color: 'hsl(262, 60%, 55%)' },
+    { icon: Shield, label: 'Mobbing-Risiko', desc: 'Wie hoch ist die Gefahr für Hänseleien?', color: 'hsl(0, 84%, 60%)' },
+    { icon: Globe, label: 'Aussprache-Schwierigkeit', desc: 'Ist der Name weltweit verständlich?', color: 'hsl(262, 60%, 55%)' },
     { icon: Briefcase, label: 'Karriere-Risiko', desc: 'Wirkt der Name professionell?', color: 'hsl(43, 74%, 50%)' },
     { icon: TrendingUp, label: 'Trend-Risiko', desc: 'Zeitlos oder kurzlebiger Trend?', color: 'hsl(170, 60%, 45%)' },
   ]
@@ -79,7 +83,7 @@ export function HomepageClient() {
               <span className="gradient-text">bereuen?</span>
             </h1>
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8 max-w-lg mx-auto">
-              Analysiere jeden Babynamen auf Mobbing-Risiko, Karrierewirkung, internationale Aussprache und aktuelle Trends \u2013 bevor du dich festlegst.
+              Analysiere jeden Babynamen auf Mobbing-Risiko, Karrierewirkung, internationale Aussprache und aktuelle Trends – bevor du dich festlegst.
             </p>
           </motion.div>
 
@@ -131,7 +135,7 @@ export function HomepageClient() {
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            { icon: Search, step: '1', title: 'Name eingeben', desc: 'Gib den gew\u00fcnschten Babynamen in das Suchfeld ein. Unsere Datenbank enth\u00e4lt \u00fcber 160 DACH-Namen \u2013 unbekannte Namen analysiert unsere KI in Echtzeit.' },
+            { icon: Search, step: '1', title: 'Name eingeben', desc: 'Gib den gewünschten Babynamen in das Suchfeld ein. Optional kannst du auch den Nachnamen angeben für einen Kombinations-Check.' },
             { icon: BarChart3, step: '2', title: 'Analyse erhalten', desc: 'Der Name wird in vier Kategorien bewertet: Mobbing-Risiko, Aussprache-Schwierigkeit, Karriere-Risiko und Trend-Risiko. Je niedriger der Wert, desto besser.' },
             { icon: CheckCircle, step: '3', title: 'Entscheidung treffen', desc: 'Vergleiche verschiedene Namen und triff eine informierte Entscheidung. Teile die Ergebnisse mit deinem Partner oder deiner Familie.' },
           ].map((s, i) => (
@@ -220,7 +224,7 @@ export function HomepageClient() {
         >
           <h2 className="font-display text-2xl sm:text-3xl font-bold mb-3 flex items-center justify-center gap-2">
             <HelpCircle className="w-6 h-6 text-[hsl(262,60%,55%)]" />
-            H\u00e4ufig gestellte Fragen
+            Häufig gestellte Fragen
           </h2>
         </motion.div>
         <div className="max-w-3xl mx-auto space-y-4">
@@ -236,7 +240,7 @@ export function HomepageClient() {
             >
               <summary className="px-5 py-4 cursor-pointer font-medium text-sm sm:text-base flex items-center justify-between gap-2 hover:bg-muted/30 transition-colors list-none [&::-webkit-details-marker]:hidden">
                 {faq.q}
-                <span className="text-muted-foreground shrink-0 transition-transform group-open:rotate-180">\u25BC</span>
+                <span className="text-muted-foreground shrink-0 transition-transform group-open:rotate-180">▼</span>
               </summary>
               <div className="px-5 pb-4">
                 <p className="text-sm text-muted-foreground leading-relaxed">{faq.a}</p>

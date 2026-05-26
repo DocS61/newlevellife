@@ -74,7 +74,7 @@ export function TopNamesSection() {
         >
           <div className="px-5 py-4 bg-emerald-50 dark:bg-emerald-950/30 border-b border-emerald-200 dark:border-emerald-800/40 flex items-center gap-2">
             <Trophy className="w-5 h-5 text-emerald-600" />
-            <h3 className="font-display font-semibold text-emerald-800 dark:text-emerald-300">Top 10 \u2013 Sicherste Namen</h3>
+            <h3 className="font-display font-semibold text-emerald-800 dark:text-emerald-300">Top 10 – Sicherste Namen</h3>
           </div>
           <div className="divide-y divide-border">
             {safest.slice(0, 10).map((name, i) => (
@@ -105,7 +105,7 @@ export function TopNamesSection() {
         >
           <div className="px-5 py-4 bg-red-50 dark:bg-red-950/30 border-b border-red-200 dark:border-red-800/40 flex items-center gap-2">
             <AlertTriangle className="w-5 h-5 text-red-600" />
-            <h3 className="font-display font-semibold text-red-800 dark:text-red-300">Top 10 \u2013 Riskanteste Namen</h3>
+            <h3 className="font-display font-semibold text-red-800 dark:text-red-300">Top 10 – Riskanteste Namen</h3>
           </div>
           <div className="divide-y divide-border">
             {riskiest.slice(0, 10).map((name, i) => (

@@ -19,9 +19,6 @@ export function Footer() {
             <Link href="/imprint" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Impressum
             </Link>
-            <Link href="/about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Über uns
-            </Link>
           </nav>
         </div>
       </div>

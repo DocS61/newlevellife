@@ -16,7 +16,7 @@ export function Header() {
             <Baby className="w-5 h-5" />
           </div>
           <span className="font-display font-bold text-lg tracking-tight hidden sm:block">
-            <span className="gradient-text">NRC</span>
+            <span className="gradient-text">Namen-Reue-Rechner</span>
           </span>
         </Link>
 
@@ -25,8 +25,11 @@ export function Header() {
           <Link href="/" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent transition-colors">
             Startseite
           </Link>
-          <Link href="/about" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent transition-colors">
-            Über uns
+          <Link href="/privacy" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent transition-colors">
+            Datenschutz
+          </Link>
+          <Link href="/imprint" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent transition-colors">
+            Impressum
           </Link>
         </nav>
 
@@ -54,8 +57,11 @@ export function Header() {
               <Link href="/" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent" onClick={() => setMenuOpen(false)}>
                 Startseite
               </Link>
-              <Link href="/about" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent" onClick={() => setMenuOpen(false)}>
-                Über uns
+              <Link href="/privacy" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent" onClick={() => setMenuOpen(false)}>
+                Datenschutz
+              </Link>
+              <Link href="/imprint" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent" onClick={() => setMenuOpen(false)}>
+                Impressum
               </Link>
             </nav>
           </motion.div>
