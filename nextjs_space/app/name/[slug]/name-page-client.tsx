@@ -151,7 +151,7 @@ export function NamePageClient({ nameData, relatedNames }: NamePageClientProps) 
                       Nomen est Omen – {nameData.name} esoterisch betrachtet
                     </h2>
                     <p className="text-xs text-muted-foreground mt-1">
-                      Numerologische und symbolische Deutung – zur Unterhaltung, nicht als Lebensberatung 😉
+                      „Nomen est Omen“ ist Latein und bedeutet „Der Name ist ein Zeichen“ – also die Idee, dass ein Name etwas über seinen Träger verrät. Hier schauen wir uns deinen Namen spielerisch durch die Brille der Numerologie und Klangsymbolik an. Zur Unterhaltung, nicht als Lebensberatung 😉
                     </p>
                   </div>
 

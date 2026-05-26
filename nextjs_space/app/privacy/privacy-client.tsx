@@ -7,13 +7,145 @@ import { motion } from 'framer-motion'
 
 export function PrivacyClient() {
   const sections = [
-    { heading: '1. Verantwortlicher', text: '[Ihr Name / Ihre Firma]\n[Ihre Adresse]\n[Ihre E-Mail-Adresse]\n\nDer Verantwortliche im Sinne der Datenschutz-Grundverordnung (DSGVO) ist die oben genannte Person/Firma.' },
-    { heading: '2. Erhebung und Speicherung personenbezogener Daten', text: 'Beim Besuch dieser Website werden automatisch Informationen durch den Browser übermittelt (Server-Logfiles). Diese Daten werden nicht mit anderen Datenquellen zusammengeführt. Die Datenverarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO.' },
-    { heading: '3. Cookies', text: 'Diese Website verwendet ausschließlich technisch notwendige Cookies und speichert Präferenzen (Cookie-Einwilligung) lokal im Browser (localStorage). Es werden keine Tracking-Cookies ohne Einwilligung gesetzt.' },
-    { heading: '4. Namens- und Kombinations-Analyse', text: 'Bei der Namensanalyse wird der eingegebene Vorname mit unserer Datenbank abgeglichen. Ist der Name nicht in der Datenbank vorhanden, wird eine KI-gestützte Analyse durchgeführt. Beim Kombinations-Check (Vorname + Nachname) wird der eingegebene Nachname ausschließlich zur einmaligen Analyse an unseren KI-Dienst übermittelt. Der Nachname wird dabei weder in unserer Datenbank gespeichert noch anderweitig dauerhaft gesichert. Nach Abschluss der Analyse wird der Nachname nicht weiter verarbeitet oder aufbewahrt.' },
-    { heading: '5. Analysetools und Werbung', text: 'Diese Website kann Google AdSense verwenden, um Anzeigen zu schalten. Google AdSense verwendet Cookies, um für die Besucher relevante Anzeigen zu schalten. Die Verwendung solcher Cookies erfolgt nur nach vorheriger Einwilligung.' },
-    { heading: '6. Ihre Rechte', text: 'Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger und den Zweck der Datenverarbeitung. Ferner haben Sie das Recht auf Berichtigung, Sperrung oder Löschung dieser Daten.' },
-    { heading: '7. Hosting', text: 'Diese Website wird auf Servern in Deutschland (Hetzner Online GmbH) gehostet. Die Datenverarbeitung erfolgt ausschließlich innerhalb der EU/des EWR.' },
+    {
+      heading: '1. Verantwortlicher',
+      text: `Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) und anderer datenschutzrechtlicher Bestimmungen ist:
+
+Dr. Hartmut Sauer
+Weithartstraße 6
+88512 Mengen
+Deutschland
+
+E-Mail: hello@new-level-life.de`
+    },
+    {
+      heading: '2. Allgemeines zur Datenverarbeitung',
+      text: `Diese Website verarbeitet personenbezogene Daten grundsätzlich nur, soweit dies zur Bereitstellung einer funktionsfähigen Website sowie unserer Inhalte und Leistungen erforderlich ist. Die Verarbeitung personenbezogener Daten erfolgt regelmäßig nur nach Einwilligung des Nutzers. Eine Ausnahme gilt in solchen Fällen, in denen eine vorherige Einholung einer Einwilligung aus tatsächlichen Gründen nicht möglich ist und die Verarbeitung der Daten durch gesetzliche Vorschriften gestattet ist.`
+    },
+    {
+      heading: '3. Rechtsgrundlagen',
+      text: `Soweit wir für Verarbeitungsvorgänge eine Einwilligung einholen, dient Art. 6 Abs. 1 lit. a DSGVO als Rechtsgrundlage.
+
+Soweit die Verarbeitung zur Wahrung eines berechtigten Interesses unseres Unternehmens oder eines Dritten erforderlich ist und die Interessen, Grundrechte und Grundfreiheiten des Betroffenen das erstgenannte Interesse nicht überwiegen, dient Art. 6 Abs. 1 lit. f DSGVO als Rechtsgrundlage.`
+    },
+    {
+      heading: '4. Server-Logfiles',
+      text: `Beim Besuch dieser Website erhebt und speichert der Provider der Seiten automatisch Informationen in sogenannten Server-Logfiles, die Ihr Browser automatisch übermittelt. Dies sind:
+
+• Browsertyp und Browserversion
+• Verwendetes Betriebssystem
+• Referrer URL
+• Hostname des zugreifenden Rechners
+• Uhrzeit der Serveranfrage
+• IP-Adresse (anonymisiert)
+
+Diese Daten werden nicht mit anderen Datenquellen zusammengeführt. Grundlage für die Datenverarbeitung ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der technischen Bereitstellung und Sicherheit der Website).`
+    },
+    {
+      heading: '5. Consent Management (Cookiebot)',
+      text: `Diese Website nutzt die Consent-Management-Plattform Cookiebot der Firma Usercentrics A/S, Havnegade 39, 1058 Kopenhagen, Dänemark, um Ihre Einwilligung zur Speicherung bestimmter Cookies und zur Datenverarbeitung einzuholen und diese rechtskonform zu dokumentieren.
+
+Beim Aufruf unserer Website wird eine Verbindung zu Servern von Cookiebot hergestellt, um Ihre Einwilligungen und Widerrufe zur Cookie-Nutzung zu ermitteln. Cookiebot speichert einen Cookie in Ihrem Browser (CookieConsent), um Ihnen die erteilten Einwilligungen bzw. deren Widerruf zuordnen zu können.
+
+Die erfassten Daten werden gespeichert, bis Sie uns zur Löschung auffordern, den Cookiebot-Cookie selbst löschen oder der Zweck für die Datenspeicherung entfällt. Zwingende gesetzliche Aufbewahrungspflichten bleiben unberührt.
+
+Der Einsatz von Cookiebot erfolgt, um die gesetzlich vorgeschriebenen Einwilligungen für den Einsatz von Cookies einzuholen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. c DSGVO (rechtliche Verpflichtung).
+
+Ein Auftragsverarbeitungsvertrag (AVV) mit Cookiebot ist abgeschlossen.`
+    },
+    {
+      heading: '6. Cookies',
+      text: `Diese Website verwendet Cookies. Cookies sind kleine Textdateien, die auf Ihrem Endgerät gespeichert werden. Einige Cookies sind technisch notwendig (z. B. für die Consent-Verwaltung), andere dienen der Analyse oder Werbung.
+
+Technisch notwendige Cookies werden auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO gesetzt. Alle übrigen Cookies (z. B. für Analyse oder Werbung) werden nur nach Ihrer ausdrücklichen Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO gesetzt.
+
+Sie können Ihre Einwilligung jederzeit über das Cookiebot-Banner widerrufen. Bereits gesetzte Cookies können Sie in Ihren Browsereinstellungen löschen.
+
+Zusätzlich speichern wir folgende Informationen lokal in Ihrem Browser (localStorage):
+
+• Cookie-Einwilligungs-Status
+• Zuletzt gesuchte Namen (für Komfortfunktion)
+
+Diese Daten verlassen Ihr Gerät nicht und werden nicht an Server übermittelt.`
+    },
+    {
+      heading: '7. Google Analytics',
+      text: `Diese Website nutzt Google Analytics 4, einen Webanalysedienst der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland ("Google").
+
+Google Analytics verwendet Cookies, die eine Analyse der Benutzung der Website ermöglichen. Die durch das Cookie erzeugten Informationen über Ihre Benutzung dieser Website werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert.
+
+Wir verwenden Google Analytics mit aktivierter IP-Anonymisierung. Das bedeutet, Ihre IP-Adresse wird von Google innerhalb von Mitgliedstaaten der EU oder in anderen Vertragsstaaten des Abkommens über den EWR zuvor gekürzt.
+
+Google Analytics wird nur nach Ihrer ausdrücklichen Einwilligung über das Cookiebot-Banner aktiviert. Rechtsgrundlage ist Art. 6 Abs. 1 lit. a DSGVO.
+
+Wir haben mit Google einen Auftragsverarbeitungsvertrag abgeschlossen. Die Datenübertragung in die USA wird auf die EU-Standardvertragsklauseln gestützt.
+
+Sie können die Erfassung durch Google Analytics verhindern, indem Sie Ihre Einwilligung im Cookiebot-Banner verweigern oder nachträglich widerrufen. Alternativ können Sie das Browser-Add-on zur Deaktivierung von Google Analytics herunterladen: https://tools.google.com/dlpage/gaoptout
+
+Mehr Informationen zum Umgang mit Nutzerdaten bei Google Analytics finden Sie in der Datenschutzerklärung von Google: https://policies.google.com/privacy`
+    },
+    {
+      heading: '8. Google AdSense',
+      text: `Diese Website nutzt Google AdSense, einen Dienst zum Einbinden von Werbeanzeigen der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland ("Google").
+
+Google AdSense verwendet Cookies und sogenannte Web Beacons, um die Website-Nutzung zu analysieren und relevante Werbeanzeigen auszuliefern. Die durch Cookies und Web Beacons erzeugten Informationen über Ihre Benutzung dieser Website (einschließlich Ihrer IP-Adresse) und die Auslieferung von Werbeformaten werden an einen Server von Google in den USA übertragen und dort gespeichert.
+
+Google AdSense wird nur nach Ihrer ausdrücklichen Einwilligung über das Cookiebot-Banner aktiviert. Rechtsgrundlage ist Art. 6 Abs. 1 lit. a DSGVO.
+
+Google kann diese Informationen an Dritte weitergeben, sofern dies gesetzlich vorgeschrieben ist oder soweit Dritte diese Daten im Auftrag von Google verarbeiten.
+
+Sie können die Erfassung verhindern, indem Sie Ihre Einwilligung verweigern oder nachträglich widerrufen. Zusätzlich können Sie personalisierte Werbung in Ihren Google-Kontoeinstellungen deaktivieren: https://adssettings.google.com
+
+Weitere Informationen: https://policies.google.com/technologies/ads`
+    },
+    {
+      heading: '9. Namens- und Kombinations-Analyse',
+      text: `Bei der Namensanalyse wird der eingegebene Vorname mit unserer lokalen Datenbank abgeglichen. Ist der Name nicht in der Datenbank vorhanden, wird eine KI-gestützte Analyse durchgeführt.
+
+Beim Kombinations-Check (Vorname + Nachname) und beim Doppelname-Check (zwei Vornamen) werden die eingegebenen Namen ausschließlich zur einmaligen Analyse verarbeitet. Dabei gilt:
+
+• Nachnamen werden weder in unserer Datenbank noch anderweitig dauerhaft gespeichert.
+• Die Daten werden einmalig an unseren KI-Dienst übermittelt und nach der Analyse nicht weiter aufbewahrt.
+• Es findet kein Profiling statt.
+• Es werden keine Namen mit IP-Adressen oder anderen personenbezogenen Daten verknüpft.
+
+Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Bereitstellung der Analysefunktion). Die Verarbeitung erfolgt ausschließlich zum Zweck der einmaligen Analyse und Ergebnisanzeige.`
+    },
+    {
+      heading: '10. Hosting',
+      text: `Diese Website wird bei der Hetzner Online GmbH, Industriestr. 25, 91710 Gunzenhausen, Deutschland gehostet. Die Server befinden sich ausschließlich in Deutschland.
+
+Hetzner verarbeitet Ihre Daten nur im Rahmen der Erbringung der Hostingleistung und folgt unseren Weisungen bezüglich dieser Daten. Ein Auftragsverarbeitungsvertrag nach Art. 28 DSGVO ist abgeschlossen.
+
+Weitere Informationen: https://www.hetzner.com/de/legal/privacy-policy`
+    },
+    {
+      heading: '11. Ihre Rechte als betroffene Person',
+      text: `Sie haben gegenüber uns folgende Rechte hinsichtlich der Sie betreffenden personenbezogenen Daten:
+
+• Recht auf Auskunft (Art. 15 DSGVO)
+• Recht auf Berichtigung (Art. 16 DSGVO)
+• Recht auf Löschung (Art. 17 DSGVO)
+• Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)
+• Recht auf Datenübertragbarkeit (Art. 20 DSGVO)
+• Recht auf Widerspruch gegen die Verarbeitung (Art. 21 DSGVO)
+• Recht auf Widerruf Ihrer Einwilligung (Art. 7 Abs. 3 DSGVO)
+
+Zur Ausübung Ihrer Rechte wenden Sie sich bitte per E-Mail an: hello@new-level-life.de
+
+Sie haben zudem das Recht, sich bei einer Datenschutz-Aufsichtsbehörde über die Verarbeitung Ihrer personenbezogenen Daten zu beschweren. Die für uns zuständige Aufsichtsbehörde ist:
+
+Der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Baden-Württemberg
+Lautenschlagerstraße 20
+70173 Stuttgart
+https://www.baden-wuerttemberg.datenschutz.de`
+    },
+    {
+      heading: '12. Aktualität und Änderung dieser Datenschutzerklärung',
+      text: `Diese Datenschutzerklärung ist aktuell gültig und hat den Stand Mai 2026.
+
+Durch die Weiterentwicklung unserer Website oder aufgrund geänderter gesetzlicher beziehungsweise behördlicher Vorgaben kann es notwendig werden, diese Datenschutzerklärung zu ändern. Die jeweils aktuelle Datenschutzerklärung kann jederzeit auf dieser Seite abgerufen werden.`
+    },
   ]
 
   return (
@@ -26,7 +158,7 @@ export function PrivacyClient() {
             <h1 className="font-display text-3xl font-bold tracking-tight">Datenschutzerklärung</h1>
           </div>
           <div className="space-y-6">
-            {sections.map((s: any) => (
+            {sections.map((s) => (
               <div key={s.heading} className="p-5 rounded-xl bg-card border border-border" style={{ boxShadow: 'var(--shadow-sm)' }}>
                 <h2 className="font-semibold mb-2">{s.heading}</h2>
                 <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">{s.text}</p>
