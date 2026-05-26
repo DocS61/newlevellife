@@ -3,12 +3,9 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Baby, Menu, X } from 'lucide-react'
-import { useI18n } from '@/lib/i18n/context'
-import { LanguageSwitcher } from './language-switcher'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export function Header() {
-  const { t } = useI18n()
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
@@ -26,22 +23,19 @@ export function Header() {
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-1">
           <Link href="/" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent transition-colors">
-            {t('navHome')}
+            Startseite
           </Link>
           <Link href="/about" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent transition-colors">
-            {t('navAbout')}
+            Über uns
           </Link>
-          <div className="w-px h-6 bg-border mx-2" />
-          <LanguageSwitcher />
         </nav>
 
         {/* Mobile nav */}
         <div className="flex md:hidden items-center gap-2">
-          <LanguageSwitcher />
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="p-2 rounded-lg hover:bg-accent transition-colors"
-            aria-label="Menu"
+            aria-label="Menü"
           >
             {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -58,10 +52,10 @@ export function Header() {
           >
             <nav className="max-w-[1200px] mx-auto px-4 py-3 flex flex-col gap-1">
               <Link href="/" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent" onClick={() => setMenuOpen(false)}>
-                {t('navHome')}
+                Startseite
               </Link>
               <Link href="/about" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent" onClick={() => setMenuOpen(false)}>
-                {t('navAbout')}
+                Über uns
               </Link>
             </nav>
           </motion.div>

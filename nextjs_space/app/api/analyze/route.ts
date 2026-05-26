@@ -6,7 +6,6 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request?.json()
     const name = body?.name ?? ''
-    const locale = body?.locale ?? 'de'
 
     if (!name) {
       return new Response(
@@ -23,36 +22,29 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const langMap: Record<string, string> = {
-      de: 'German',
-      en: 'English',
-      es: 'Spanish',
-    }
-    const language = langMap[locale] ?? 'German'
+    const systemPrompt = `Du bist ein Experte für Babynamen-Analyse. Analysiere den gegebenen Babynamen und liefere Bewertungen und Erklärungen. Antworte auf Deutsch.
 
-    const systemPrompt = `You are a baby name analysis expert. Analyze the given baby name and provide scores and explanations. Respond in ${language}.
-
-Please respond in JSON format with the following structure:
+Bitte antworte im JSON-Format mit folgender Struktur:
 {
-  "name": "The name as entered",
-  "origin": "Cultural/linguistic origin of the name",
-  "meaning": "Meaning of the name",
-  "gender": "m for male, f for female, u for unisex",
-  "bullyingScore": 0-10 (0=no risk, 10=extreme risk for teasing/bullying),
-  "bullyingExplanation": "Brief explanation of bullying potential",
-  "intlScore": 0-10 (0=easy worldwide, 10=extremely hard to pronounce),
-  "intlExplanation": "Brief explanation of international pronunciation difficulty",
-  "careerScore": 0-10 (0=very professional, 10=very unprofessional perception),
-  "careerExplanation": "Brief explanation of career impact",
-  "trendScore": 0-10 (0=timeless classic, 10=extreme short-lived trend),
-  "trendExplanation": "Brief explanation of trend analysis",
-  "overallRegret": 0-100 (calculated as weighted score: bullying*3 + intl*2.5 + career*2.5 + trend*2),
-  "overallExplanation": "Overall summary of the name analysis"
+  "name": "Der eingegebene Name",
+  "origin": "Kulturelle/sprachliche Herkunft des Namens",
+  "meaning": "Bedeutung des Namens",
+  "gender": "m für männlich, f für weiblich, u für unisex",
+  "bullyingScore": 0-10 (0=kein Risiko, 10=extremes Risiko für Hänseleien/Mobbing),
+  "bullyingExplanation": "Kurze Erklärung zum Mobbing-Potenzial",
+  "intlScore": 0-10 (0=weltweit leicht auszusprechen, 10=extrem schwer auszusprechen),
+  "intlExplanation": "Kurze Erklärung zur internationalen Aussprache",
+  "careerScore": 0-10 (0=sehr professionell, 10=sehr unprofessionelle Wahrnehmung),
+  "careerExplanation": "Kurze Erklärung zur Karrierewirkung",
+  "trendScore": 0-10 (0=zeitloser Klassiker, 10=extremer kurzlebiger Trend),
+  "trendExplanation": "Kurze Erklärung zur Trend-Analyse",
+  "overallRegret": 0-100 (berechnet als gewichteter Score: bullying*3 + intl*2.5 + career*2.5 + trend*2),
+  "overallExplanation": "Gesamtzusammenfassung der Namensanalyse"
 }
 
-Be honest but kind. Consider cultural context across German, English, and Spanish-speaking countries. The scores should reflect real-world considerations.
+Sei ehrlich aber freundlich. Berücksichtige den kulturellen Kontext im deutschsprachigen Raum. Die Bewertungen sollten realistische Überlegungen widerspiegeln.
 
-Respond with raw JSON only. Do not include code blocks, markdown, or any other formatting.`
+Antworte nur mit reinem JSON. Keine Code-Blöcke, kein Markdown, keine andere Formatierung.`
 
     const response = await fetch('https://apps.abacus.ai/v1/chat/completions', {
       method: 'POST',
@@ -64,7 +56,7 @@ Respond with raw JSON only. Do not include code blocks, markdown, or any other f
         model: 'gpt-5.4-mini',
         messages: [
           { role: 'system', content: systemPrompt },
-          { role: 'user', content: `Analyze the baby name: "${name}"` },
+          { role: 'user', content: `Analysiere den Babynamen: "${name}"` },
         ],
         stream: true,
         max_tokens: 2000,

@@ -1,13 +1,11 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useI18n } from '@/lib/i18n/context'
 import { NameData } from '@/lib/types'
 import { TrendingUp, ChevronRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 export function PopularNames({ onSelect }: { onSelect?: (name: string) => void }) {
-  const { t } = useI18n()
   const [names, setNames] = useState<NameData[]>([])
 
   useEffect(() => {
@@ -23,9 +21,9 @@ export function PopularNames({ onSelect }: { onSelect?: (name: string) => void }
     <section className="w-full">
       <div className="flex items-center gap-2 mb-4">
         <TrendingUp className="w-5 h-5 text-[hsl(340,75%,55%)]" />
-        <h2 className="font-display text-xl font-bold tracking-tight">{t('popularTitle')}</h2>
+        <h2 className="font-display text-xl font-bold tracking-tight">Beliebte Namen</h2>
       </div>
-      <p className="text-sm text-muted-foreground mb-5">{t('popularSubtitle')}</p>
+      <p className="text-sm text-muted-foreground mb-5">Die meistgesuchten Namen und ihre Bewertungen</p>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {(names ?? []).map((n: NameData, i: number) => (
           <motion.button

@@ -1,6 +1,5 @@
 'use client'
 
-import { useI18n } from '@/lib/i18n/context'
 import { NameSearch } from './name-search'
 import { PopularNames } from './popular-names'
 import { RecentSearches } from './recent-searches'
@@ -12,13 +11,11 @@ import { Baby, Shield, Globe, Briefcase, TrendingUp } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 export function HomepageClient() {
-  const { t } = useI18n()
-
   const features = [
-    { icon: Shield, label: t('bullyingScore'), desc: t('bullyingDesc'), color: 'hsl(0, 84%, 60%)' },
-    { icon: Globe, label: t('intlScore'), desc: t('intlDesc'), color: 'hsl(262, 60%, 55%)' },
-    { icon: Briefcase, label: t('careerScore'), desc: t('careerDesc'), color: 'hsl(43, 74%, 50%)' },
-    { icon: TrendingUp, label: t('trendScore'), desc: t('trendDesc'), color: 'hsl(170, 60%, 45%)' },
+    { icon: Shield, label: 'Mobbing-Risiko', desc: 'Potenzial für Hänseleien und Spitznamen', color: 'hsl(0, 84%, 60%)' },
+    { icon: Globe, label: 'Internationale Aussprache', desc: 'Wie leicht der Name weltweit ausgesprochen wird', color: 'hsl(262, 60%, 55%)' },
+    { icon: Briefcase, label: 'Karrierewirkung', desc: 'Wahrnehmung in beruflichen Kontexten', color: 'hsl(43, 74%, 50%)' },
+    { icon: TrendingUp, label: 'Trend-Analyse', desc: 'Ist der Name zeitlos oder vergänglich?', color: 'hsl(170, 60%, 45%)' },
   ]
 
   return (
@@ -37,15 +34,15 @@ export function HomepageClient() {
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[hsl(340,75%,55%/0.1)] border border-[hsl(340,75%,55%/0.2)] mb-6">
               <Baby className="w-4 h-4 text-[hsl(340,75%,55%)]" />
               <span className="text-xs font-medium text-[hsl(340,75%,55%)]">
-                {t('overallRegret')} 0-100
+                Gesamt-Reue-Score 0-100
               </span>
             </div>
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight mb-4">
-              {t('heroTitle')}{' '}
-              <span className="gradient-text">{t('heroTitleHighlight')}</span>
+              Wird dein Kind seinen Namen{' '}
+              <span className="gradient-text">bereuen?</span>
             </h1>
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8 max-w-lg mx-auto">
-              {t('heroSubtitle')}
+              Analysiere jeden Babynamen auf Mobbing-Risiko, Karrierewirkung, internationale Aussprache und aktuelle Trends – bevor du dich festlegst.
             </p>
           </motion.div>
 

@@ -13,22 +13,23 @@ const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mon
 
 export const metadata = {
   metadataBase: new URL(process.env.NEXTAUTH_URL || 'http://localhost:3000'),
-  title: 'Namen-Reue-Rechner | Name Regret Calculator',
-  description: 'Analysiere Babynamen auf Mobbing-Risiko, internationale Aussprache, Karrierewirkung und Trends. Find the perfect name without regret.',
+  title: 'Namen-Reue-Rechner | Babynamen analysieren & bewerten',
+  description: 'Analysiere Babynamen auf Mobbing-Risiko, internationale Aussprache, Karrierewirkung und Trends. Finde den perfekten Namen ohne Reue.',
   icons: {
     icon: '/favicon.svg',
     shortcut: '/favicon.svg',
   },
   openGraph: {
-    title: 'Namen-Reue-Rechner | Name Regret Calculator',
-    description: 'Analysiere Babynamen auf Mobbing-Risiko, Karrierewirkung und Trends.',
+    title: 'Namen-Reue-Rechner | Babynamen analysieren & bewerten',
+    description: 'Wird dein Kind seinen Namen bereuen? Analysiere jeden Babynamen auf Mobbing-Risiko, Karrierewirkung und Trends.',
     images: ['/og-image.png'],
     type: 'website',
+    locale: 'de_DE',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Namen-Reue-Rechner | Name Regret Calculator',
-    description: 'Analysiere Babynamen auf Mobbing-Risiko, Karrierewirkung und Trends.',
+    title: 'Namen-Reue-Rechner | Babynamen analysieren & bewerten',
+    description: 'Wird dein Kind seinen Namen bereuen? Analysiere jeden Babynamen auf Mobbing-Risiko, Karrierewirkung und Trends.',
     images: ['/og-image.png'],
   },
 }

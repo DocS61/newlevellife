@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useCallback, useRef, useEffect } from 'react'
-import { useI18n } from '@/lib/i18n/context'
 import { NameData, AIAnalysisResult, RecentSearch } from '@/lib/types'
 import { Search, Shuffle, Loader2, Sparkles } from 'lucide-react'
 import { NameResultCard } from './name-result-card'
@@ -9,7 +8,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { toast } from 'sonner'
 
 export function NameSearch() {
-  const { t, locale } = useI18n()
   const [query, setQuery] = useState('')
   const [suggestions, setSuggestions] = useState<NameData[]>([])
   const [showSuggestions, setShowSuggestions] = useState(false)
@@ -77,7 +75,7 @@ export function NameSearch() {
       const response = await fetch('/api/analyze', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, locale }),
+        body: JSON.stringify({ name }),
       })
 
       if (!response?.ok) {
@@ -122,7 +120,7 @@ export function NameSearch() {
       setLoading(false)
     } catch (err: any) {
       setLoading(false)
-      toast.error(t('errorText'))
+      toast.error('Etwas ist schiefgelaufen. Bitte versuche es erneut.')
       console.error('AI analysis error:', err)
     }
   }
@@ -156,7 +154,7 @@ export function NameSearch() {
         analyzeFromDB(data.name)
       }
     } catch {
-      toast.error(t('errorText'))
+      toast.error('Etwas ist schiefgelaufen. Bitte versuche es erneut.')
     }
   }
 
@@ -180,7 +178,7 @@ export function NameSearch() {
             value={query}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setQuery(e?.target?.value ?? ''); setShowSuggestions(true) }}
             onFocus={() => setShowSuggestions(true)}
-            placeholder={t('heroPlaceholder')}
+            placeholder="Einen Namen eingeben..."
             className="w-full h-14 pl-12 pr-4 rounded-xl bg-card border border-border text-base font-medium placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-[hsl(340,75%,55%)] focus:border-transparent transition-all"
             style={{ boxShadow: 'var(--shadow-md)' }}
           />
@@ -226,7 +224,7 @@ export function NameSearch() {
             style={{ boxShadow: 'var(--shadow-md)' }}
           >
             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Search className="w-4 h-4" />}
-            {t('heroButton')}
+            Namen analysieren
           </button>
           <button
             type="button"
@@ -236,7 +234,7 @@ export function NameSearch() {
             style={{ boxShadow: 'var(--shadow-sm)' }}
           >
             <Shuffle className="w-4 h-4" />
-            {t('heroRandomButton')}
+            Zufälliger Name
           </button>
         </div>
       </form>
@@ -252,7 +250,7 @@ export function NameSearch() {
           >
             <div className="bg-card rounded-xl border border-border p-6 text-center" style={{ boxShadow: 'var(--shadow-md)' }}>
               <Sparkles className="w-8 h-8 text-[hsl(340,75%,55%)] mx-auto mb-3 animate-pulse" />
-              <p className="text-sm font-medium mb-3">{t('loading')}</p>
+              <p className="text-sm font-medium mb-3">Analysiere...</p>
               <div className="h-2 rounded-full bg-muted overflow-hidden max-w-xs mx-auto">
                 <motion.div
                   className="h-full rounded-full bg-gradient-to-r from-[hsl(340,75%,55%)] to-[hsl(262,60%,55%)]"
@@ -260,7 +258,7 @@ export function NameSearch() {
                   transition={{ duration: 0.3 }}
                 />
               </div>
-              {isAI && <p className="text-xs text-muted-foreground mt-2">{t('customAnalysisDesc')}</p>}
+              {isAI && <p className="text-xs text-muted-foreground mt-2">Dieser Name ist nicht in unserer Datenbank. Eine KI-gestützte Analyse wird durchgeführt.</p>}
             </div>
           </motion.div>
         )}

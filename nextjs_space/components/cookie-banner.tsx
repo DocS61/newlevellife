@@ -1,12 +1,10 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useI18n } from '@/lib/i18n/context'
 import { Cookie, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export function CookieBanner() {
-  const { t } = useI18n()
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
@@ -41,24 +39,26 @@ export function CookieBanner() {
             <div className="flex items-start gap-3">
               <Cookie className="w-5 h-5 text-[hsl(340,75%,55%)] mt-0.5 flex-shrink-0" />
               <div className="flex-1">
-                <h3 className="font-display font-semibold text-sm mb-1">{t('cookieTitle')}</h3>
-                <p className="text-xs text-muted-foreground leading-relaxed mb-3">{t('cookieText')}</p>
+                <h3 className="font-display font-semibold text-sm mb-1">Cookie-Einstellungen</h3>
+                <p className="text-xs text-muted-foreground leading-relaxed mb-3">
+                  Diese Website verwendet Cookies, um die Benutzererfahrung zu verbessern. Wir speichern nur technisch notwendige Daten lokal in deinem Browser.
+                </p>
                 <div className="flex items-center gap-2">
                   <button
                     onClick={handleAccept}
                     className="px-4 py-1.5 text-xs font-medium rounded-lg bg-gradient-to-r from-[hsl(340,75%,55%)] to-[hsl(262,60%,55%)] text-white hover:opacity-90 transition-opacity"
                   >
-                    {t('cookieAccept')}
+                    Akzeptieren
                   </button>
                   <button
                     onClick={handleReject}
                     className="px-4 py-1.5 text-xs font-medium rounded-lg bg-muted hover:bg-muted/80 transition-colors"
                   >
-                    {t('cookieReject')}
+                    Ablehnen
                   </button>
                 </div>
               </div>
-              <button onClick={handleReject} className="p-1 rounded hover:bg-muted transition-colors" aria-label="Close">
+              <button onClick={handleReject} className="p-1 rounded hover:bg-muted transition-colors" aria-label="Schließen">
                 <X className="w-4 h-4 text-muted-foreground" />
               </button>
             </div>

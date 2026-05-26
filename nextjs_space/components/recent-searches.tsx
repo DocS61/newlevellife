@@ -1,13 +1,11 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useI18n } from '@/lib/i18n/context'
 import { RecentSearch } from '@/lib/types'
 import { Clock, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export function RecentSearches({ onSelect }: { onSelect?: (name: string) => void }) {
-  const { t } = useI18n()
   const [searches, setSearches] = useState<RecentSearch[]>([])
 
   const loadSearches = () => {
@@ -36,7 +34,7 @@ export function RecentSearches({ onSelect }: { onSelect?: (name: string) => void
     <section className="w-full">
       <div className="flex items-center gap-2 mb-4">
         <Clock className="w-5 h-5 text-[hsl(262,60%,55%)]" />
-        <h2 className="font-display text-xl font-bold tracking-tight">{t('recentTitle')}</h2>
+        <h2 className="font-display text-xl font-bold tracking-tight">Letzte Suchen</h2>
       </div>
       <div className="flex flex-wrap gap-2">
         <AnimatePresence>
