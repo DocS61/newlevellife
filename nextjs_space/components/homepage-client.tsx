@@ -38,6 +38,10 @@ const faqData = [
     a: 'Ja, die Nutzung des Namen-Reue-Rechners ist vollständig kostenlos. Du kannst so viele Namen analysieren, wie du möchtest – ohne Registrierung und ohne versteckte Kosten.'
   },
   {
+    q: 'Kann ich auch Doppelnamen prüfen?',
+    a: 'Ja! Klicke auf „+ Zweitname für Doppelname-Check“ unter dem Suchfeld. Wir prüfen dann, ob die beiden Vornamen als Doppelname harmonieren: Lautübergang, Silbenrhythmus, Stilkonsistenz und Gesamtlänge. Wenn du zusätzlich einen Nachnamen angibst, analysieren wir auch den Dreier-Rhythmus (z.B. Anna-Sophie Müller).'
+  },
+  {
     q: 'Kann ich dem Ergebnis vertrauen?',
     a: 'Die Analyse basiert auf linguistischen, kulturellen und statistischen Daten. Sie soll als Orientierungshilfe dienen, nicht als endgültige Bewertung. Letztlich ist die Namenswahl eine sehr persönliche Entscheidung – unser Tool hilft dir, potenzielle Risiken zu erkennen, die du vielleicht übersehen hättest.'
   },

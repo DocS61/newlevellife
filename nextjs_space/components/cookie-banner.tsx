@@ -39,7 +39,7 @@ export function CookieBanner() {
             <div className="flex items-start gap-3">
               <Cookie className="w-5 h-5 text-[hsl(340,75%,55%)] mt-0.5 flex-shrink-0" />
               <div className="flex-1">
-                <h3 className="font-display font-semibold text-sm mb-1">Cookie-Einstellungen</h3>
+                <h3 className="font-display font-semibold text-sm mb-1 text-gray-900">Cookie-Einstellungen</h3>
                 <p className="text-xs text-muted-foreground leading-relaxed mb-3">
                   Diese Website verwendet Cookies, um die Benutzererfahrung zu verbessern. Wir speichern nur technisch notwendige Daten lokal in deinem Browser.
                 </p>
@@ -52,7 +52,7 @@ export function CookieBanner() {
                   </button>
                   <button
                     onClick={handleReject}
-                    className="px-4 py-1.5 text-xs font-medium rounded-lg bg-muted hover:bg-muted/80 transition-colors"
+                    className="px-4 py-1.5 text-xs font-medium rounded-lg bg-gray-200 text-gray-800 hover:bg-gray-300 transition-colors"
                   >
                     Ablehnen
                   </button>

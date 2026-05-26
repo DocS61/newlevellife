@@ -6,6 +6,7 @@ import { Search, Shuffle, Loader2, Sparkles, ChevronDown, ChevronUp, Users } fro
 import { NameResultCard } from './name-result-card'
 import { ComboResultCard, ComboResult } from './combo-result-card'
 import { NameSuggestionsTrigger, NameSuggestionsResult } from './name-suggestions'
+import { DoubleNameResultCard, DoubleNameResult } from './double-name-result'
 import { motion, AnimatePresence } from 'framer-motion'
 import { toast } from 'sonner'
 
@@ -24,6 +25,10 @@ export function NameSearch() {
   const [progress, setProgress] = useState(0)
   const [suggestionsData, setSuggestionsData] = useState<{ boys: any[]; girls: any[]; aiReasoning: string } | null>(null)
   const [suggestionsLoading, setSuggestionsLoading] = useState(false)
+  const [secondName, setSecondName] = useState('')
+  const [showSecondName, setShowSecondName] = useState(false)
+  const [doubleResult, setDoubleResult] = useState<DoubleNameResult | null>(null)
+  const [doubleLoading, setDoubleLoading] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
   const suggestionsRef = useRef<HTMLDivElement>(null)
 
@@ -62,6 +67,32 @@ export function NameSearch() {
       localStorage.setItem('nrc-recent', JSON.stringify(updated))
       window.dispatchEvent(new Event('nrc-recent-updated'))
     } catch { /* ignore */ }
+  }
+
+  const runDoubleNameCheck = async (firstName: string) => {
+    const sn2 = secondName.trim()
+    if (!sn2 || sn2.length < 2) return
+    setDoubleLoading(true)
+    setDoubleResult(null)
+    try {
+      const res = await fetch('/api/analyze-double', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          firstName1: firstName,
+          firstName2: sn2,
+          lastName: surname.trim() || undefined,
+        }),
+      })
+      if (res.ok) {
+        const data = await res.json()
+        setDoubleResult(data)
+      }
+    } catch {
+      // non-critical
+    } finally {
+      setDoubleLoading(false)
+    }
   }
 
   const fetchNameSuggestions = async () => {
@@ -120,6 +151,7 @@ export function NameSearch() {
     setLoading(false)
     addRecentSearch(nameData?.name ?? '', nameData?.overallRegret ?? 0)
     runComboAnalysis(nameData.name)
+    runDoubleNameCheck(nameData.name)
   }
 
   const analyzeWithAI = async (name: string) => {
@@ -166,6 +198,7 @@ export function NameSearch() {
                 setLoading(false)
                 addRecentSearch(name, parsed?.result?.overallRegret ?? 0)
                 runComboAnalysis(name)
+                runDoubleNameCheck(name)
                 return
               } else if (parsed?.status === 'error') {
                 throw new Error(parsed?.message ?? 'Analysis failed')
@@ -328,6 +361,46 @@ export function NameSearch() {
           </AnimatePresence>
         </div>
 
+        {/* Optional second first name for double-name check */}
+        <div className="mt-2">
+          <button
+            type="button"
+            onClick={() => setShowSecondName(!showSecondName)}
+            className="inline-flex items-center gap-2 text-sm font-medium text-[hsl(200,70%,50%)] hover:text-[hsl(200,70%,40%)] transition-colors mx-auto px-3 py-1.5 rounded-lg bg-[hsl(200,70%,50%/0.08)] hover:bg-[hsl(200,70%,50%/0.15)] border border-[hsl(200,70%,50%/0.2)]"
+          >
+            <Users className="w-4 h-4" />
+            {showSecondName ? 'Zweitnamen ausblenden' : '+ Zweitname für Doppelname-Check'}
+            {showSecondName ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+          </button>
+          <AnimatePresence>
+            {showSecondName && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                className="overflow-hidden"
+              >
+                <div className="relative mt-3">
+                  <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                    <Users className="w-4 h-4 text-muted-foreground" />
+                  </div>
+                  <input
+                    type="text"
+                    value={secondName}
+                    onChange={(e) => setSecondName(e.target.value)}
+                    placeholder="Zweiter Vorname eingeben (z.B. Sophie)..."
+                    className="w-full h-12 pl-11 pr-4 rounded-xl bg-card border border-[hsl(200,70%,50%/0.3)] text-base font-medium placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-[hsl(200,70%,50%)] focus:border-transparent transition-all"
+                    style={{ boxShadow: 'var(--shadow-sm)' }}
+                  />
+                </div>
+                <p className="text-xs text-muted-foreground mt-2 px-1">
+                  Wir prüfen, ob die beiden Vornamen als Doppelname harmonieren: Lautfluss, Silbenrhythmus, Stilkonsistenz und Gesamtlänge.{surname.trim() ? ' Da du einen Nachnamen angegeben hast, prüfen wir auch den Dreier-Rhythmus!' : ''}
+                </p>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
         <div className="flex items-center justify-center gap-3 mt-4">
           <button
             type="submit"
@@ -397,6 +470,19 @@ export function NameSearch() {
             {/* Combo result */}
             {comboResult && !comboLoading && (
               <ComboResultCard data={comboResult} />
+            )}
+
+            {/* Double name loading */}
+            {doubleLoading && (
+              <div className="bg-card rounded-xl border border-border p-5 text-center">
+                <Loader2 className="w-5 h-5 text-[hsl(200,70%,50%)] mx-auto mb-2 animate-spin" />
+                <p className="text-sm text-muted-foreground">Doppelname-Check wird durchgeführt...</p>
+              </div>
+            )}
+
+            {/* Double name result */}
+            {doubleResult && !doubleLoading && (
+              <DoubleNameResultCard data={doubleResult} />
             )}
           </motion.div>
         )}

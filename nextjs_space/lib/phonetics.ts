@@ -270,3 +270,191 @@ export function analyzeNameCombo(firstName: string, lastName: string): PhoneticA
     overallNote,
   }
 }
+
+// --- Double Name Analysis ---
+
+export interface DoubleNameAnalysis {
+  flowScore: number
+  flowNote: string
+  rhythmScore: number
+  rhythmNote: string
+  styleScore: number
+  styleNote: string
+  lengthScore: number
+  lengthNote: string
+  overallDouble: number
+  overallNote: string
+  tripleRhythmScore?: number
+  tripleRhythmNote?: string
+}
+
+/** Sound flow between two first names */
+function analyzeDoubleFlow(name1: string, name2: string): { score: number; note: string } {
+  const end1 = name1.toLowerCase().slice(-1)
+  const start2 = name2.toLowerCase().charAt(0)
+
+  if (end1 === start2) {
+    if (VOWELS.has(end1)) {
+      return { score: 6, note: `Vokal-Zusammenstoß: „${name1}" endet und „${name2}" beginnt mit dem gleichen Vokal – das kann beim Sprechen holpern.` }
+    }
+    return { score: 5, note: `Konsonanten-Dopplung am Übergang: „...${end1} ${start2}..." – beim schnellen Sprechen holprig.` }
+  }
+
+  if (VOWELS.has(end1) !== VOWELS.has(start2)) {
+    return { score: 0, note: `Fließender Übergang zwischen „${name1}" und „${name2}" – klingt harmonisch!` }
+  }
+
+  const fStart = phoneticStart(name1)
+  const sStart = phoneticStart(name2)
+  if (fStart === sStart) {
+    return { score: 4, note: `Beide Namen beginnen mit dem gleichen Laut – als Doppelname etwas monoton.` }
+  }
+
+  return { score: 1, note: 'Akzeptabler Lautübergang zwischen den beiden Vornamen.' }
+}
+
+/** Syllable rhythm of double name */
+function analyzeDoubleRhythm(name1: string, name2: string): { score: number; note: string } {
+  const s1 = countSyllables(name1)
+  const s2 = countSyllables(name2)
+  const total = s1 + s2
+
+  if (total >= 3 && total <= 5 && s1 !== s2) {
+    return { score: 0, note: `Idealer Rhythmus: ${s1}+${s2} Silben (${name1}-${name2}). Unterschiedliche Silbenzahlen erzeugen einen angenehmen Sprechrhythmus.` }
+  }
+
+  if (s1 === s2) {
+    if (s1 === 1) {
+      return { score: 3, note: `Beide Namen haben nur 1 Silbe – als Doppelname (${name1}-${name2}) sehr kurz und abgehackt.` }
+    }
+    if (s1 >= 3) {
+      return { score: 5, note: `Beide Namen haben je ${s1} Silben – als Doppelname (${total} Silben gesamt) recht lang und gleichförmig.` }
+    }
+    return { score: 2, note: `Beide Namen haben je ${s1} Silben – gleichmäßig, aber etwas monoton im Rhythmus.` }
+  }
+
+  if (total >= 7) {
+    return { score: 6, note: `Sehr langer Doppelname (${s1}+${s2} = ${total} Silben). Wird im Alltag fast sicher abgekürzt.` }
+  }
+
+  if (total <= 2) {
+    return { score: 4, note: `Extrem kurzer Doppelname (${total} Silben). Klingt eher wie ein einzelner Name.` }
+  }
+
+  return { score: 1, note: `Guter Rhythmus mit ${s1}+${s2} Silben.` }
+}
+
+/** Style consistency between two names */
+function analyzeDoubleStyle(name1: string, name2: string): { score: number; note: string } {
+  const len1 = name1.length
+  const len2 = name2.length
+
+  const modernEndings = ['a', 'i', 'o', 'e']
+  const classicEndings = ['th', 'ld', 'rt', 'rd', 'nd', 'lm', 'us', 'as', 'es', 'fried', 'helm', 'bert', 'hard', 'gard', 'linde', 'trude']
+
+  const end1Modern = modernEndings.includes(name1.toLowerCase().slice(-1))
+  const end2Modern = modernEndings.includes(name2.toLowerCase().slice(-1))
+  const end1Classic = classicEndings.some(e => name1.toLowerCase().endsWith(e))
+  const end2Classic = classicEndings.some(e => name2.toLowerCase().endsWith(e))
+
+  if (Math.abs(len1 - len2) >= 5) {
+    return { score: 5, note: `Großer Längenunterschied (${len1} vs. ${len2} Buchstaben) – die Namen wirken stilistisch unausgewogen.` }
+  }
+
+  if ((end1Classic && end2Modern) || (end1Modern && end2Classic)) {
+    return { score: 4, note: `Stilmix: Ein Name klingt klassisch, der andere modern. Das kann charmant sein, aber auch unruhig wirken.` }
+  }
+
+  if (end1Classic && end2Classic) {
+    return { score: 1, note: `Beide Namen haben einen klassischen Stil – das passt gut zusammen als traditioneller Doppelname.` }
+  }
+
+  if (end1Modern && end2Modern) {
+    return { score: 1, note: `Beide Namen haben einen modernen Klang – stilistisch harmonisch als Doppelname.` }
+  }
+
+  return { score: 2, note: 'Die Namen passen stilistisch einigermaßen zusammen.' }
+}
+
+/** Overall length assessment for double name */
+function analyzeDoubleLength(name1: string, name2: string): { score: number; note: string } {
+  const totalChars = name1.length + name2.length
+  const totalSyllables = countSyllables(name1) + countSyllables(name2)
+
+  if (totalChars <= 6) {
+    return { score: 3, note: `Nur ${totalChars} Buchstaben gesamt – als Doppelname fast zu kurz.` }
+  }
+  if (totalChars <= 12) {
+    return { score: 0, note: `${totalChars} Buchstaben gesamt – ideale Länge für einen Doppelnamen. Alltagstauglich!` }
+  }
+  if (totalChars <= 16) {
+    return { score: 3, note: `${totalChars} Buchstaben gesamt – noch akzeptabel, aber lang für den Alltag.` }
+  }
+  return { score: 7, note: `${totalChars} Buchstaben gesamt – sehr lang! Im Alltag wird vermutlich nur ein Name verwendet.` }
+}
+
+/** Triple combo: first1 + first2 + lastname */
+function analyzeTripleRhythm(name1: string, name2: string, lastName: string): { score: number; note: string } {
+  const s1 = countSyllables(name1)
+  const s2 = countSyllables(name2)
+  const sL = countSyllables(lastName)
+  const total = s1 + s2 + sL
+
+  if (total <= 4) {
+    return { score: 3, note: `${s1}+${s2}+${sL} Silben – insgesamt etwas kurz für einen vollen Doppelnamen mit Nachnamen.` }
+  }
+  if (total <= 7) {
+    return { score: 0, note: `${s1}+${s2}+${sL} Silben – „${name1}-${name2} ${lastName}" hat einen ausgewogenen Gesamtrhythmus!` }
+  }
+  if (total <= 9) {
+    return { score: 4, note: `${s1}+${s2}+${sL} = ${total} Silben – „${name1}-${name2} ${lastName}" ist recht lang, aber noch tragbar.` }
+  }
+  return { score: 7, note: `${s1}+${s2}+${sL} = ${total} Silben – „${name1}-${name2} ${lastName}" ist sehr lang. Formular-Albtraum!` }
+}
+
+export function analyzeDoubleName(name1: string, name2: string, lastName?: string): DoubleNameAnalysis {
+  const flow = analyzeDoubleFlow(name1, name2)
+  const rhythm = analyzeDoubleRhythm(name1, name2)
+  const style = analyzeDoubleStyle(name1, name2)
+  const length = analyzeDoubleLength(name1, name2)
+
+  // Weighted overall
+  const weightedSum =
+    flow.score * 2.5 +
+    rhythm.score * 2 +
+    style.score * 1.5 +
+    length.score * 2
+  const maxPossible = 10 * (2.5 + 2 + 1.5 + 2) // = 80
+  const overallRaw = Math.round((weightedSum / maxPossible) * 10)
+  const overall = Math.min(10, Math.max(0, overallRaw))
+
+  let overallNote: string
+  if (overall <= 2) {
+    overallNote = `„${name1}-${name2}" – ein harmonischer Doppelname! Klingt ausgewogen und stimmig.`
+  } else if (overall <= 5) {
+    overallNote = `„${name1}-${name2}" – als Doppelname akzeptabel, aber mit kleinen Schwächen.`
+  } else {
+    overallNote = `„${name1}-${name2}" – als Doppelname eher kritisch. Es gibt bessere Kombinationen.`
+  }
+
+  const result: DoubleNameAnalysis = {
+    flowScore: flow.score,
+    flowNote: flow.note,
+    rhythmScore: rhythm.score,
+    rhythmNote: rhythm.note,
+    styleScore: style.score,
+    styleNote: style.note,
+    lengthScore: length.score,
+    lengthNote: length.note,
+    overallDouble: overall,
+    overallNote,
+  }
+
+  if (lastName) {
+    const triple = analyzeTripleRhythm(name1, name2, lastName)
+    result.tripleRhythmScore = triple.score
+    result.tripleRhythmNote = triple.note
+  }
+
+  return result
+}
