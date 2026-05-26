@@ -6,7 +6,7 @@ import { RecentSearches } from './recent-searches'
 import { AdPlaceholder } from './ad-placeholder'
 import { Header } from './header'
 import { Footer } from './footer'
-import { CookieBanner } from './cookie-banner'
+
 import { TopNamesSection } from './top-names-section'
 import { Baby, Shield, Globe, Briefcase, TrendingUp, Search, BarChart3, CheckCircle, Lightbulb, HelpCircle, Heart, Share2 } from 'lucide-react'
 import { motion } from 'framer-motion'
@@ -296,7 +296,7 @@ export function HomepageClient() {
       </section>
 
       <Footer />
-      <CookieBanner />
+
 
       {/* FAQ Schema.org JSON-LD */}
       <script
