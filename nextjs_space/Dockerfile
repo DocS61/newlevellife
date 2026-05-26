@@ -2,49 +2,48 @@
 # Dockerfile für namensreue.de (Coolify)
 # ============================================
 
-# --- Stage 1: Dependencies ---
-FROM node:20-alpine AS deps
+FROM node:20-alpine AS base
 RUN apk add --no-cache libc6-compat openssl
+
+# --- Stage 1: Install & Build ---
+FROM base AS builder
 WORKDIR /app
 
-# Package-Dateien kopieren
+# 1. Package-Datei kopieren (die echte, nicht den Symlink)
 COPY package.coolify.json ./package.json
 COPY prisma/schema.coolify.prisma ./prisma/schema.prisma
 
-# Dependencies installieren (erzeugt yarn.lock)
+# 2. Dependencies installieren (erzeugt yarn.lock)
 RUN yarn install
 
-# Prisma Client generieren
+# 3. Prisma Client generieren
 RUN npx prisma generate
 
-# --- Stage 2: Build ---
-FROM node:20-alpine AS builder
-RUN apk add --no-cache libc6-compat openssl
-WORKDIR /app
-
-# node_modules UND yarn.lock vom deps-Stage kopieren
-COPY --from=deps /app/node_modules ./node_modules
-COPY --from=deps /app/yarn.lock ./yarn.lock
-COPY --from=deps /app/package.json ./package.json
-
-# Quellcode kopieren
-COPY . .
-
-# Standalone next.config verwenden
-COPY next.config.standalone.js ./next.config.js
+# 4. Quellcode kopieren – aber package.json und yarn.lock NICHT überschreiben
+#    Wir kopieren alles einzeln, um die Symlinks zu vermeiden
+COPY app ./app
+COPY components ./components
+COPY lib ./lib
+COPY hooks ./hooks
+COPY public ./public
 COPY prisma/schema.coolify.prisma ./prisma/schema.prisma
+COPY next.config.standalone.js ./next.config.js
+COPY tailwind.config.ts ./tailwind.config.ts
+COPY tsconfig.json ./tsconfig.json
+COPY postcss.config.js ./postcss.config.js
+COPY next-env.d.ts ./next-env.d.ts
+COPY components.json ./components.json
 
-# Prisma nochmal generieren (für Build)
-RUN npx prisma generate
+# 5. Types-Ordner kopieren falls vorhanden
+COPY types ./types
 
-# Next.js bauen
+# 6. Next.js bauen
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
 RUN yarn build
 
-# --- Stage 3: Production ---
-FROM node:20-alpine AS runner
-RUN apk add --no-cache libc6-compat openssl
+# --- Stage 2: Production ---
+FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
