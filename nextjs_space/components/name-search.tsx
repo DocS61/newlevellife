@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useRef, useEffect } from 'react'
 import { NameData, AIAnalysisResult, RecentSearch } from '@/lib/types'
-import { Search, Shuffle, Loader2, Sparkles, ChevronDown, ChevronUp, Users } from 'lucide-react'
+import { Search, Shuffle, Loader2, Sparkles, ChevronDown, ChevronUp, Users, Heart } from 'lucide-react'
 import { NameResultCard } from './name-result-card'
 import { ComboResultCard, ComboResult } from './combo-result-card'
 import { NameSuggestionsTrigger, NameSuggestionsResult } from './name-suggestions'
@@ -311,7 +311,7 @@ export function NameSearch() {
         </div>
 
         {/* Optional surname toggle */}
-        <div className="mt-3">
+        <div className="mt-3 flex flex-col items-center">
           <button
             type="button"
             onClick={() => setShowSurname(!showSurname)}
@@ -362,13 +362,13 @@ export function NameSearch() {
         </div>
 
         {/* Optional second first name for double-name check */}
-        <div className="mt-2">
+        <div className="mt-2 flex flex-col items-center">
           <button
             type="button"
             onClick={() => setShowSecondName(!showSecondName)}
             className="inline-flex items-center gap-2 text-sm font-medium text-[hsl(200,70%,50%)] hover:text-[hsl(200,70%,40%)] transition-colors mx-auto px-3 py-1.5 rounded-lg bg-[hsl(200,70%,50%/0.08)] hover:bg-[hsl(200,70%,50%/0.15)] border border-[hsl(200,70%,50%/0.2)]"
           >
-            <Users className="w-4 h-4" />
+            <Heart className="w-4 h-4" />
             {showSecondName ? 'Zweitnamen ausblenden' : '+ Zweitname für Doppelname-Check'}
             {showSecondName ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
           </button>
