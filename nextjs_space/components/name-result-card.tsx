@@ -54,6 +54,7 @@ interface NameResultCardProps {
   data?: NameData | null
   aiResult?: AIAnalysisResult | null
   isAI?: boolean
+  hideDetailLink?: boolean
 }
 
 function getGenderLabel(gender: string): string {
@@ -84,7 +85,7 @@ function getRiskColor(score: number, maxScore: number): string {
   return 'text-red-600'
 }
 
-export function NameResultCard({ data, aiResult, isAI = false }: NameResultCardProps) {
+export function NameResultCard({ data, aiResult, isAI = false, hideDetailLink = false }: NameResultCardProps) {
   const name = data?.name ?? aiResult?.name ?? ''
   const origin = data?.origin ?? aiResult?.origin ?? ''
   const meaning = data?.meaningDe ?? aiResult?.meaning ?? ''
@@ -352,7 +353,7 @@ export function NameResultCard({ data, aiResult, isAI = false }: NameResultCardP
       })()}
 
       {/* Link to detail page for DB names */}
-      {data && (
+      {data && !hideDetailLink && (
         <div className="px-6 py-4 border-t border-border">
           <Link
             href={`/name/${encodeURIComponent(name.toLowerCase())}`}
