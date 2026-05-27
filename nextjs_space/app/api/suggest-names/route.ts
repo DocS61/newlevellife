@@ -38,10 +38,10 @@ export async function POST(request: NextRequest) {
     // 2. Score each name against the surname using phonetic analysis
     const scored: ScoredName[] = allNames.map((n: typeof allNames[number]) => {
       const phonetics = analyzeNameCombo(n.name, surname)
-      // Combined score: 60% name quality (regret) + 40% combo phonetics
-      // Both are 0-10 or 0-100 scale, normalize
+      // Use granular (non-rounded) phonetics score for meaningful differentiation
+      // Weight: 30% name quality (regret), 70% phonetic fit with surname
       const regretNorm = n.overallRegret / 100 * 10 // normalize to 0-10
-      const combinedScore = regretNorm * 0.5 + phonetics.overallHarmony * 0.5
+      const combinedScore = regretNorm * 0.3 + phonetics.overallGranular * 0.7
       return {
         name: n.name,
         gender: n.gender,

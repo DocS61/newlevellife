@@ -81,6 +81,7 @@ export interface PhoneticAnalysis {
   initialsScore: number
   initialsNote: string
   overallHarmony: number
+  overallGranular: number  // non-rounded for ranking
   overallNote: string
 }
 
@@ -224,6 +225,56 @@ function analyzeSoundFlow(firstName: string, lastName: string): { score: number;
   return { score: 1, note: 'Akzeptabler Lautübergang.' }
 }
 
+/** 7. Vowel-consonant transition quality (more granular) */
+function analyzeTransitionQuality(firstName: string, lastName: string): number {
+  const f = firstName.toLowerCase()
+  const l = lastName.toLowerCase()
+  let score = 0
+
+  // End of first name -> start of last name transition
+  const fEnd2 = f.slice(-2)
+  const lStart2 = l.slice(0, 2)
+
+  // Vowel ending + consonant start = good flow (subtract from score = better)
+  if (VOWELS.has(f.slice(-1)) && !VOWELS.has(l.charAt(0))) {
+    score -= 1.5
+  }
+  // Consonant ending + vowel start = good flow
+  else if (!VOWELS.has(f.slice(-1)) && VOWELS.has(l.charAt(0))) {
+    score -= 1.0
+  }
+
+  // Check for tongue twisters (similar consonant clusters)
+  const fConsonantEnd = f.replace(/[aeiouäöü]+$/g, '').slice(-2)
+  const lConsonantStart = l.replace(/^[aeiouäöü]+/g, '').slice(0, 2)
+  if (fConsonantEnd === lConsonantStart && fConsonantEnd.length >= 2) {
+    score += 3
+  }
+
+  // Diphthong ending + diphthong start = hard to say
+  const hasDiphEnd = DIPHTHONGS.some(d => fEnd2.endsWith(d))
+  const hasDiphStart = DIPHTHONGS.some(d => lStart2.startsWith(d))
+  if (hasDiphEnd && hasDiphStart) {
+    score += 2
+  }
+
+  // Stress pattern: names ending in stressed syllable + surname starting with stressed = clashing
+  // Heuristic: short names (1-2 syllables) ending in consonant are usually stressed at end
+  const fSyl = countSyllables(firstName)
+  const lSyl = countSyllables(lastName)
+  if (fSyl <= 2 && !VOWELS.has(f.slice(-1)) && lSyl >= 2) {
+    score -= 0.5 // Usually flows well
+  }
+
+  // Total name character balance
+  const lenRatio = Math.min(f.length, l.length) / Math.max(f.length, l.length)
+  if (lenRatio >= 0.4 && lenRatio <= 0.8) {
+    score -= 0.5 // Good length balance
+  }
+
+  return Math.max(0, Math.min(10, score + 5)) // Normalize around 5
+}
+
 // --- Main exported function ---
 
 export function analyzeNameCombo(firstName: string, lastName: string): PhoneticAnalysis {
@@ -233,6 +284,7 @@ export function analyzeNameCombo(firstName: string, lastName: string): PhoneticA
   const rhythm = analyzeRhythm(firstName, lastName)
   const initials = analyzeInitials(firstName, lastName)
   const soundFlow = analyzeSoundFlow(firstName, lastName)
+  const transitionQuality = analyzeTransitionQuality(firstName, lastName)
 
   // Weighted overall harmony score (0–100, then mapped to 0–10)
   const weightedSum =
@@ -241,10 +293,13 @@ export function analyzeNameCombo(firstName: string, lastName: string): PhoneticA
     rhyme.score * 3 +        // Reimen ist am schlimmsten
     rhythm.score * 1 +
     initials.score * 2.5 +   // Schlechte Initialen sind sehr problematisch
-    soundFlow.score * 0.5
-  const maxPossible = 10 * (1.5 + 1.5 + 3 + 1 + 2.5 + 0.5) // = 100
+    soundFlow.score * 0.5 +
+    transitionQuality * 2    // Transition quality is important for ranking
+  const maxPossible = 10 * (1.5 + 1.5 + 3 + 1 + 2.5 + 0.5 + 2) // = 120
   const overallRaw = Math.round((weightedSum / maxPossible) * 10)
   const overall = Math.min(10, Math.max(0, overallRaw))
+  // Granular score for ranking purposes (not rounded)
+  const overallGranular = Math.min(10, Math.max(0, (weightedSum / maxPossible) * 10))
 
   let overallNote: string
   if (overall <= 2) {
@@ -267,6 +322,7 @@ export function analyzeNameCombo(firstName: string, lastName: string): PhoneticA
     initialsScore: initials.score,
     initialsNote: initials.note,
     overallHarmony: overall,
+    overallGranular,
     overallNote,
   }
 }
