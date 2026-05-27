@@ -4,7 +4,7 @@ import { NameData } from '@/lib/types'
 import { NameResultCard } from '@/components/name-result-card'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
-import { CookieBanner } from '@/components/cookie-banner'
+
 import { AdPlaceholder } from '@/components/ad-placeholder'
 import { ArrowLeft, ChevronRight, Sparkles, Hash, Palette, Star, Heart } from 'lucide-react'
 import Link from 'next/link'
@@ -301,7 +301,7 @@ export function NamePageClient({ nameData, relatedNames }: NamePageClientProps) 
       </main>
 
       <Footer />
-      <CookieBanner />
+
 
       {/* Schema.org JSON-LD for this name */}
       <script
