@@ -6,6 +6,7 @@ import { RecentSearches } from './recent-searches'
 import { AdPlaceholder } from './ad-placeholder'
 import { Header } from './header'
 import { Footer } from './footer'
+import { InstallPrompt } from './install-prompt'
 
 import { TopNamesSection } from './top-names-section'
 import { Baby, Shield, Globe, Briefcase, TrendingUp, Search, BarChart3, CheckCircle, Lightbulb, HelpCircle, Heart, Share2 } from 'lucide-react'
@@ -296,6 +297,7 @@ export function HomepageClient() {
       </section>
 
       <Footer />
+      <InstallPrompt />
 
 
       {/* FAQ Schema.org JSON-LD */}

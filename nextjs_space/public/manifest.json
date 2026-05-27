@@ -1,0 +1,19 @@
+{
+  "name": "Namensreue – Babynamen analysieren",
+  "short_name": "Namensreue",
+  "description": "Analysiere Babynamen auf Mobbing-Risiko, Karrierewirkung, internationale Aussprache und Trends.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#d6336c",
+  "orientation": "portrait",
+  "lang": "de",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
