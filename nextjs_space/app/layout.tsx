@@ -48,6 +48,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="Namensreue" />
         <meta name="mobile-web-app-capable" content="yes" />
         <script id="usercentrics-cmp" async data-eu-mode="true" data-settings-id="SPSxbDNkfVs2KA" src="https://app.eu.usercentrics.eu/browser-ui/latest/loader.js"></script>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4845255321653497" crossOrigin="anonymous"></script>
         <script src="https://apps.abacus.ai/chatllm/appllm-lib.js"></script>
       </head>
       <body className={`${dmSans.variable} ${jakartaSans.variable} ${jetbrainsMono.variable} font-sans`}>
