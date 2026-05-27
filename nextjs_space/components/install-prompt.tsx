@@ -94,7 +94,7 @@ export function InstallPrompt() {
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 100, opacity: 0 }}
         transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-        className="fixed bottom-0 left-0 right-0 z-50 p-3 sm:p-4 no-print"
+        className="fixed bottom-0 left-0 right-0 z-40 p-3 pb-16 sm:p-4 sm:pb-20 no-print"
       >
         <div className="max-w-lg mx-auto rounded-2xl border border-border bg-card overflow-hidden"
           style={{ boxShadow: '0 -4px 30px rgba(0,0,0,0.15)' }}
