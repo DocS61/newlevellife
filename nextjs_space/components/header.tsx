@@ -15,7 +15,7 @@ export function Header() {
           <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[hsl(340,75%,55%)] to-[hsl(262,60%,55%)] flex items-center justify-center text-white transition-transform group-hover:scale-105">
             <Baby className="w-5 h-5" />
           </div>
-          <span className="font-display font-bold text-lg tracking-tight hidden sm:block">
+          <span className="font-display font-bold text-lg tracking-tight">
             <span className="gradient-text">Namensreue</span>
           </span>
         </Link>
