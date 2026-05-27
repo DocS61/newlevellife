@@ -14,8 +14,8 @@ import { toast } from 'sonner'
 
 const faqData = [
   {
-    q: 'Was genau misst der Namen-Reue-Rechner?',
-    a: 'Der Namen-Reue-Rechner analysiert jeden Babynamen in vier Kategorien: Mobbing-Risiko (Potenzial für Hänseleien), Aussprache-Schwierigkeit (internationale Verständlichkeit), Karriere-Risiko (berufliche Wahrnehmung) und Trend-Risiko (Zeitlosigkeit vs. Modename). Aus diesen vier Werten wird ein Gesamt-Reue-Score von 0 bis 100 berechnet.'
+    q: 'Was genau misst Namensreue?',
+    a: 'Namensreue analysiert jeden Babynamen in vier Kategorien: Mobbing-Risiko (Potenzial für Hänseleien), Aussprache-Schwierigkeit (internationale Verständlichkeit), Karriere-Risiko (berufliche Wahrnehmung) und Trend-Risiko (Zeitlosigkeit vs. Modename). Aus diesen vier Werten wird ein Gesamt-Reue-Score von 0 bis 100 berechnet.'
   },
   {
     q: 'Wie wird der Gesamt-Reue-Score berechnet?',
@@ -35,7 +35,7 @@ const faqData = [
   },
   {
     q: 'Ist die Analyse wirklich kostenlos?',
-    a: 'Ja, die Nutzung des Namen-Reue-Rechners ist vollständig kostenlos. Du kannst so viele Namen analysieren, wie du möchtest – ohne Registrierung und ohne versteckte Kosten.'
+    a: 'Ja, die Nutzung von Namensreue ist vollständig kostenlos. Du kannst so viele Namen analysieren, wie du möchtest – ohne Registrierung und ohne versteckte Kosten.'
   },
   {
     q: 'Kann ich auch Doppelnamen prüfen?',
@@ -66,7 +66,7 @@ export function HomepageClient() {
 
   const handleShareSite = async () => {
     const shareData = {
-      title: 'Namen-Reue-Rechner – Babynamen analysieren',
+      title: 'Namensreue – Babynamen analysieren',
       text: 'Wird dein Kind seinen Namen bereuen? Kostenlose Namensanalyse auf Mobbing-Risiko, Karrierewirkung und mehr!',
       url: typeof window !== 'undefined' ? window.location.href : '',
     }
@@ -213,7 +213,7 @@ export function HomepageClient() {
         >
           <Heart className="w-8 h-8 mx-auto mb-3 opacity-90" />
           <h2 className="font-display text-xl sm:text-2xl font-bold mb-2">Kennst du andere werdende Eltern?</h2>
-          <p className="text-sm opacity-90 mb-4 max-w-md mx-auto">Teile den Namen-Reue-Rechner – damit auch sie die bestmögliche Namenswahl treffen können!</p>
+          <p className="text-sm opacity-90 mb-4 max-w-md mx-auto">Teile Namensreue – damit auch sie die bestmögliche Namenswahl treffen können!</p>
           <button
             onClick={handleShareSite}
             className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-[hsl(340,75%,55%)] font-semibold text-sm hover:bg-white/90 transition-colors"

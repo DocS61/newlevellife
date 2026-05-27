@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!name) {
     return {
-      title: `${slug} – Namensanalyse | Namen-Reue-Rechner`,
+      title: `${slug} – Namensanalyse | Namensreue`,
       description: `Analyse des Babynamens ${slug}: Mobbing-Risiko, Karrierewirkung, internationale Aussprache und Trend-Bewertung.`,
     }
   }
@@ -28,10 +28,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const ogImageUrl = `${baseUrl}/api/og?name=${encodeURIComponent(name.name)}&score=${name.overallRegret}&origin=${encodeURIComponent(name.origin || '')}&meaning=${encodeURIComponent(name.meaningDe || '')}`
 
   return {
-    title: `${name.name} – Namensanalyse & Bedeutung | Namen-Reue-Rechner`,
+    title: `${name.name} – Namensanalyse & Bedeutung | Namensreue`,
     description: `${name.name}: Herkunft ${name.origin}, Bedeutung „${name.meaningDe}". Reue-Score ${name.overallRegret}/100 (${riskLevel} Risiko). Detaillierte Analyse zu Mobbing, Karriere, Aussprache & Trends.`,
     openGraph: {
-      title: `${name.name} – Babynamen-Analyse | Namen-Reue-Rechner`,
+      title: `${name.name} – Babynamen-Analyse | Namensreue`,
       description: `Reue-Score ${name.overallRegret}/100 für ${name.name}. Lohnt sich dieser Name? Jetzt analysieren!`,
       type: 'article',
       locale: 'de_DE',

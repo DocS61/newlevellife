@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
   const origin = searchParams.get('origin') || ''
   const meaning = searchParams.get('meaning') || ''
 
-  const isHomepage = name === 'Namen-Reue-Rechner' || score === 0
+  const isHomepage = name === 'Namensreue' || name === 'Namen-Reue-Rechner' || score === 0
 
   if (isHomepage) {
     return new ImageResponse(
@@ -45,7 +45,7 @@ export async function GET(request: NextRequest) {
               NR
             </div>
             <span style={{ fontSize: '42px', fontWeight: 800, color: '#1a1a2e' }}>
-              Namen-Reue-Rechner
+              Namensreue
             </span>
           </div>
           <div style={{ fontSize: '28px', color: '#6b7280', textAlign: 'center', maxWidth: '800px', lineHeight: 1.5 }}>
@@ -102,7 +102,7 @@ export async function GET(request: NextRequest) {
             NR
           </div>
           <span style={{ fontSize: '22px', fontWeight: 600, color: '#6b21a8' }}>
-            Namen-Reue-Rechner
+            Namensreue
           </span>
         </div>
 

@@ -24,8 +24,8 @@ export function AboutClient() {
                 <Info className="w-4 h-4 text-[hsl(262,60%,55%)]" />
                 <span className="text-xs font-medium text-[hsl(262,60%,55%)]">Über uns</span>
               </div>
-              <h1 className="font-display text-3xl sm:text-4xl font-bold tracking-tight mb-4">Über den Namen-Reue-Rechner</h1>
-              <p className="text-muted-foreground leading-relaxed">Der Namen-Reue-Rechner hilft werdenden Eltern, fundierte Entscheidungen bei der Namenswahl zu treffen.</p>
+              <h1 className="font-display text-3xl sm:text-4xl font-bold tracking-tight mb-4">Über Namensreue</h1>
+              <p className="text-muted-foreground leading-relaxed">Namensreue hilft werdenden Eltern, fundierte Entscheidungen bei der Namenswahl zu treffen.</p>
             </motion.div>
           </div>
         </section>

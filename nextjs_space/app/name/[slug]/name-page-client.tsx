@@ -337,7 +337,7 @@ export function NamePageClient({ nameData, relatedNames }: NamePageClientProps) 
             description: `Detaillierte Analyse des Babynamens ${nameData.name}: Herkunft, Bedeutung und Risikobewertung.`,
             author: {
               '@type': 'Organization',
-              name: 'Namen-Reue-Rechner',
+              name: 'Namensreue',
             },
           }),
         }}

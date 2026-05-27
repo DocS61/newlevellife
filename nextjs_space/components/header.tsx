@@ -16,7 +16,7 @@ export function Header() {
             <Baby className="w-5 h-5" />
           </div>
           <span className="font-display font-bold text-lg tracking-tight hidden sm:block">
-            <span className="gradient-text">Namen-Reue-Rechner</span>
+            <span className="gradient-text">Namensreue</span>
           </span>
         </Link>
 
