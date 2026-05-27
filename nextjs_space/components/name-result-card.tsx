@@ -282,6 +282,29 @@ export function NameResultCard({ data, aiResult, isAI = false }: NameResultCardP
                 </div>
               </div>
 
+              {/* Namenszahl Erläuterung */}
+              <div className="p-4 rounded-lg bg-gradient-to-br from-[hsl(262,60%,55%/0.06)] to-[hsl(340,75%,55%/0.06)] border border-[hsl(262,60%,55%/0.15)]">
+                <h4 className="text-xs font-semibold uppercase tracking-wider text-[hsl(262,60%,55%)] mb-2 flex items-center gap-1.5">
+                  <Info className="w-3.5 h-3.5" />
+                  Was ist die Namenszahl?
+                </h4>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Die Namenszahl stammt aus der <strong>Numerologie</strong> – einer Jahrtausende alten Tradition, die Buchstaben Zahlenwerte zuordnet.
+                  Jeder Buchstabe erhält eine Zahl von 1–9 (A=1, B=2, … I=9, dann wieder J=1, K=2 usw.).
+                  Alle Buchstabenwerte des Namens werden addiert und die Summe so lange auf ihre Quersumme reduziert, bis eine einstellige Zahl (1–9) entsteht.
+                </p>
+                <p className="text-xs text-muted-foreground leading-relaxed mt-1.5">
+                  <strong>Beispiel:</strong> {name} → {name.split('').map((ch, i) => {
+                    const val = 'abcdefghijklmnopqrstuvwxyzäöüß'.indexOf(ch.toLowerCase())
+                    const numVal = val >= 0 ? [1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,1,6,3,1][val] : 0
+                    return numVal > 0 ? `${ch.toUpperCase()}(${numVal})` : null
+                  }).filter(Boolean).join(' + ')} = <strong>{num}</strong>
+                </p>
+                <p className="text-[10px] text-muted-foreground/70 mt-2 italic">
+                  Die Numerologie ist keine Wissenschaft, sondern ein spielerischer Blick auf Namen. Bitte nicht zu ernst nehmen!
+                </p>
+              </div>
+
               {/* Element & Planet */}
               <div className="grid grid-cols-2 gap-3">
                 <div className="p-3 rounded-lg bg-muted/30 border border-border">
