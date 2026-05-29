@@ -69,23 +69,7 @@ Zusätzlich speichern wir folgende Informationen lokal in Ihrem Browser (localSt
 Diese Daten verlassen Ihr Gerät nicht und werden nicht an Server übermittelt.`
     },
     {
-      heading: '7. Google Analytics',
-      text: `Diese Website nutzt Google Analytics 4, einen Webanalysedienst der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland ("Google").
-
-Google Analytics verwendet Cookies, die eine Analyse der Benutzung der Website ermöglichen. Die durch das Cookie erzeugten Informationen über Ihre Benutzung dieser Website werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert.
-
-Wir verwenden Google Analytics mit aktivierter IP-Anonymisierung. Das bedeutet, Ihre IP-Adresse wird von Google innerhalb von Mitgliedstaaten der EU oder in anderen Vertragsstaaten des Abkommens über den EWR zuvor gekürzt.
-
-Google Analytics wird nur nach Ihrer ausdrücklichen Einwilligung über das Usercentrics-Banner aktiviert. Rechtsgrundlage ist Art. 6 Abs. 1 lit. a DSGVO.
-
-Wir haben mit Google einen Auftragsverarbeitungsvertrag abgeschlossen. Die Datenübertragung in die USA wird auf die EU-Standardvertragsklauseln gestützt.
-
-Sie können die Erfassung durch Google Analytics verhindern, indem Sie Ihre Einwilligung im Usercentrics-Banner verweigern oder nachträglich widerrufen. Alternativ können Sie das Browser-Add-on zur Deaktivierung von Google Analytics herunterladen: https://tools.google.com/dlpage/gaoptout
-
-Mehr Informationen zum Umgang mit Nutzerdaten bei Google Analytics finden Sie in der Datenschutzerklärung von Google: https://policies.google.com/privacy`
-    },
-    {
-      heading: '8. Google AdSense',
+      heading: '7. Google AdSense',
       text: `Diese Website nutzt Google AdSense, einen Dienst zum Einbinden von Werbeanzeigen der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland ("Google").
 
 Google AdSense verwendet Cookies und sogenannte Web Beacons, um die Website-Nutzung zu analysieren und relevante Werbeanzeigen auszuliefern. Die durch Cookies und Web Beacons erzeugten Informationen über Ihre Benutzung dieser Website (einschließlich Ihrer IP-Adresse) und die Auslieferung von Werbeformaten werden an einen Server von Google in den USA übertragen und dort gespeichert.
@@ -99,7 +83,7 @@ Sie können die Erfassung verhindern, indem Sie Ihre Einwilligung verweigern ode
 Weitere Informationen: https://policies.google.com/technologies/ads`
     },
     {
-      heading: '9. Namens- und Kombinations-Analyse',
+      heading: '8. Namens- und Kombinations-Analyse',
       text: `Bei der Namensanalyse wird der eingegebene Vorname mit unserer lokalen Datenbank abgeglichen. Ist der Name nicht in der Datenbank vorhanden, wird eine KI-gestützte Analyse durchgeführt.
 
 Beim Kombinations-Check (Vorname + Nachname) und beim Doppelname-Check (zwei Vornamen) werden die eingegebenen Namen ausschließlich zur einmaligen Analyse verarbeitet. Dabei gilt:
@@ -112,7 +96,7 @@ Beim Kombinations-Check (Vorname + Nachname) und beim Doppelname-Check (zwei Vor
 Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Bereitstellung der Analysefunktion). Die Verarbeitung erfolgt ausschließlich zum Zweck der einmaligen Analyse und Ergebnisanzeige.`
     },
     {
-      heading: '10. Hosting',
+      heading: '9. Hosting',
       text: `Diese Website wird bei der Hetzner Online GmbH, Industriestr. 25, 91710 Gunzenhausen, Deutschland gehostet. Die Server befinden sich ausschließlich in Deutschland.
 
 Hetzner verarbeitet Ihre Daten nur im Rahmen der Erbringung der Hostingleistung und folgt unseren Weisungen bezüglich dieser Daten. Ein Auftragsverarbeitungsvertrag nach Art. 28 DSGVO ist abgeschlossen.
@@ -120,7 +104,7 @@ Hetzner verarbeitet Ihre Daten nur im Rahmen der Erbringung der Hostingleistung 
 Weitere Informationen: https://www.hetzner.com/de/legal/privacy-policy`
     },
     {
-      heading: '11. Ihre Rechte als betroffene Person',
+      heading: '10. Ihre Rechte als betroffene Person',
       text: `Sie haben gegenüber uns folgende Rechte hinsichtlich der Sie betreffenden personenbezogenen Daten:
 
 • Recht auf Auskunft (Art. 15 DSGVO)
@@ -141,7 +125,7 @@ Lautenschlagerstraße 20
 https://www.baden-wuerttemberg.datenschutz.de`
     },
     {
-      heading: '12. Aktualität und Änderung dieser Datenschutzerklärung',
+      heading: '11. Aktualität und Änderung dieser Datenschutzerklärung',
       text: `Diese Datenschutzerklärung ist aktuell gültig und hat den Stand Mai 2026.
 
 Durch die Weiterentwicklung unserer Website oder aufgrund geänderter gesetzlicher beziehungsweise behördlicher Vorgaben kann es notwendig werden, diese Datenschutzerklärung zu ändern. Die jeweils aktuelle Datenschutzerklärung kann jederzeit auf dieser Seite abgerufen werden.`
