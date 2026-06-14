@@ -7,9 +7,10 @@ import { AdPlaceholder } from './ad-placeholder'
 import { Header } from './header'
 import { Footer } from './footer'
 import { InstallPrompt } from './install-prompt'
-
 import { TopNamesSection } from './top-names-section'
-import { Baby, Shield, Globe, Briefcase, TrendingUp, Search, BarChart3, CheckCircle, Lightbulb, HelpCircle, Heart, Share2 } from 'lucide-react'
+import { blogArticles } from '@/lib/blog-data'
+import Link from 'next/link'
+import { Baby, Shield, Globe, Briefcase, TrendingUp, Search, BarChart3, CheckCircle, Lightbulb, HelpCircle, Heart, Share2, BookOpen, ArrowRight, Users, Layers, Sparkles } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { toast } from 'sonner'
 
@@ -50,7 +51,7 @@ const faqData = [
 
 const funFacts = [
   { emoji: '🇩🇪', text: 'In Deutschland dürfen Standesbeamte einen Vornamen ablehnen, wenn er dem Kindeswohl schadet.', bg: 'from-blue-100 to-indigo-100 dark:from-blue-950/40 dark:to-indigo-950/40', border: 'border-blue-200 dark:border-blue-800/40' },
-  { emoji: '📚', text: 'Der Name „Kevin" wird in Studien häufig mit niedrigeren Erwartungen von Lehrkräften assoziiert – das sogenannte „Kevinismus"-Phänomen.', bg: 'from-rose-100 to-pink-100 dark:from-rose-950/40 dark:to-pink-950/40', border: 'border-rose-200 dark:border-rose-800/40' },
+  { emoji: '📚', text: 'Der Name „Kevin" wird in Studien häufig mit niedrigeren Erwartungen von Lehrern assoziiert – das sogenannte „Kevinismus"-Phänomen.', bg: 'from-rose-100 to-pink-100 dark:from-rose-950/40 dark:to-pink-950/40', border: 'border-rose-200 dark:border-rose-800/40' },
   { emoji: '🏆', text: 'Emma und Noah sind seit Jahren die beliebtesten Babynamen in Deutschland.', bg: 'from-amber-100 to-yellow-100 dark:from-amber-950/40 dark:to-yellow-950/40', border: 'border-amber-200 dark:border-amber-800/40' },
   { emoji: '🇨🇭', text: 'In der Schweiz sind Namen wie Beat, Urs und Regula gängig – in Deutschland kennt sie kaum jemand.', bg: 'from-emerald-100 to-teal-100 dark:from-emerald-950/40 dark:to-teal-950/40', border: 'border-emerald-200 dark:border-emerald-800/40' },
   { emoji: '🤔', text: 'Über 60 % der Deutschen wünschen sich rückblickend, sich länger mit der Namenswahl beschäftigt zu haben.', bg: 'from-violet-100 to-purple-100 dark:from-violet-950/40 dark:to-purple-950/40', border: 'border-violet-200 dark:border-violet-800/40' },
@@ -146,6 +147,62 @@ export function HomepageClient() {
         </div>
       </section>
 
+      {/* Editorial Intro */}
+      <section className="max-w-[1200px] mx-auto px-4 sm:px-6 py-12">
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="rounded-2xl border border-border bg-card p-6 sm:p-8"
+          style={{ boxShadow: 'var(--shadow-sm)' }}
+        >
+          <h2 className="font-display text-2xl sm:text-3xl font-bold mb-4">Warum die Namenswahl so wichtig ist</h2>
+          <div className="text-muted-foreground leading-relaxed space-y-3 text-sm sm:text-base">
+            <p>
+              Ein Vorname begleitet dein Kind ein Leben lang – im Kindergarten, in der Schule, im Bewerbungsgespräch und auf der Visitenkarte. 
+              Studien der Namensforschung (Onomastik) zeigen: Der Vorname beeinflusst, wie andere Menschen uns wahrnehmen, bevor sie uns kennenlernen. 
+              Forscher der Universität Oldenburg wiesen nach, dass Lehrer bestimmte Vornamen unbewusst mit höherer oder niedrigerer Leistung verbinden.
+            </p>
+            <p>
+              Genau hier setzt <strong className="text-foreground">Namensreue</strong> an. Unser Analyse-Tool bewertet jeden Babynamen in vier wissenschaftlich fundierten Kategorien: 
+              Wie groß ist das Mobbing-Risiko? Klingt der Name im Berufsleben seriös? Ist er international aussprechbar? Und wird er in zehn Jahren veraltet wirken? 
+              Aus diesen Einzelbewertungen entsteht ein Gesamt-Reue-Score, der dir auf einen Blick zeigt, wie zukunftssicher dein Wunschname ist.
+            </p>
+            <p>
+              Die Datenbank umfasst über 450 sorgfältig analysierte Namen. Für Namen, die noch nicht enthalten sind, erstellt unsere KI in Echtzeit eine individuelle Analyse. 
+              So kannst du auch ausgefallene oder regionale Namen prüfen – komplett kostenlos und ohne Registrierung.
+            </p>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Stats Counter */}
+      <section className="max-w-[1200px] mx-auto px-4 sm:px-6 pb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {[
+            { icon: Users, value: '450+', label: 'Analysierte Namen', color: 'text-[hsl(340,75%,55%)]' },
+            { icon: Layers, value: '4', label: 'Bewertungskategorien', color: 'text-[hsl(262,60%,55%)]' },
+            { icon: Sparkles, value: '100 %', label: 'Kostenlos & ohne Anmeldung', color: 'text-[hsl(170,60%,45%)]' },
+          ].map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="flex items-center gap-4 p-5 rounded-xl border border-border bg-card"
+              style={{ boxShadow: 'var(--shadow-sm)' }}
+            >
+              <stat.icon className={`w-8 h-8 ${stat.color} shrink-0`} />
+              <div>
+                <p className="text-2xl font-bold font-display">{stat.value}</p>
+                <p className="text-sm text-muted-foreground">{stat.label}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
       {/* Wie funktioniert es? */}
       <section className="max-w-[1200px] mx-auto px-4 sm:px-6 py-12">
         <motion.div
@@ -201,6 +258,61 @@ export function HomepageClient() {
               <AdPlaceholder position="sidebar" />
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Blog Teaser */}
+      <section className="max-w-[1200px] mx-auto px-4 sm:px-6 py-12">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="text-center mb-8"
+        >
+          <h2 className="font-display text-2xl sm:text-3xl font-bold mb-3 flex items-center justify-center gap-2">
+            <BookOpen className="w-6 h-6 text-[hsl(340,75%,55%)]" />
+            Aus unserem Blog
+          </h2>
+          <p className="text-muted-foreground max-w-lg mx-auto">Ratgeber, Trends und Wissenswertes rund um Babynamen</p>
+        </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          {blogArticles.slice(0, 3).map((article, i) => (
+            <motion.div
+              key={article.slug}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+            >
+              <Link
+                href={`/blog/${article.slug}`}
+                className="block p-5 rounded-xl border border-border bg-card hover:border-[hsl(340,75%,55%/0.3)] transition-all h-full"
+                style={{ boxShadow: 'var(--shadow-sm)' }}
+              >
+                <span className="text-3xl mb-3 block">{article.emoji}</span>
+                <span
+                  className="inline-block text-xs font-medium px-2 py-0.5 rounded-full mb-2"
+                  style={{ backgroundColor: `${article.categoryColor}20`, color: article.categoryColor }}
+                >
+                  {article.category}
+                </span>
+                <h3 className="font-display font-semibold text-sm sm:text-base mb-2 line-clamp-2">{article.title}</h3>
+                <p className="text-xs text-muted-foreground line-clamp-2">{article.description}</p>
+                <span className="inline-flex items-center gap-1 text-xs font-medium text-[hsl(340,75%,55%)] mt-3">
+                  Weiterlesen <ArrowRight className="w-3 h-3" />
+                </span>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+        <div className="text-center">
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-border hover:bg-muted/50 transition-colors text-sm font-medium"
+          >
+            Alle Artikel ansehen
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
       </section>
 

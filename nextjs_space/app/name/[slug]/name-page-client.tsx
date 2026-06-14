@@ -2,6 +2,7 @@
 
 import { NameData } from '@/lib/types'
 import { NameResultCard } from '@/components/name-result-card'
+import NameContentSection from '@/components/name-content-section'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
 
@@ -48,6 +49,8 @@ export function NamePageClient({ nameData, relatedNames }: NamePageClientProps) 
           {/* Main content */}
           <div className="lg:col-span-2 space-y-6">
             <NameResultCard data={nameData} hideDetailLink />
+
+            <NameContentSection data={nameData} />
 
             <AdPlaceholder position="between-results" />
           </div>
