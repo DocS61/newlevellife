@@ -29,7 +29,7 @@ const articles: Record<string, string> = {
 <li><strong>Theo</strong> – Die Kurzform von Theodor erlebt einen kometenhaften Aufstieg.</li>
 <li><strong>Luca</strong> – International und geschlechtsneutral – passt in die Zeit.</li>
 <li><strong>Emil</strong> – Der Retro-Trend bringt auch diesen Klassiker zurück.</li>
-<li><strong>Ben</strong> – Kurz und knackig, wenn auch leicht rücklÃ¤ufig.</li>
+<li><strong>Ben</strong> – Kurz und knackig, wenn auch leicht rückläufig.</li>
 <li><strong>Karl</strong> – Überraschungsneuling! Der altdeutsche Name schafft es erstmals wieder in die Top 10.</li>
 </ol>
 
@@ -63,7 +63,7 @@ const articles: Record<string, string> = {
 <li><strong>Senja</strong> – Finnisch, „gastfreundlich“. Exotisch, aber leicht auszusprechen.</li>
 <li><strong>Liora</strong> – Hebräisch, „mein Licht“. Poetisch und selten.</li>
 <li><strong>Talia</strong> – Hebräisch, „Tau des Himmels“. Sanft und melodisch.</li>
-<li><strong>Ylva</strong> – Schwedisch, „Wölfin“. Stark und ungewÃ¶hnlich.</li>
+<li><strong>Ylva</strong> – Schwedisch, „Wölfin“. Stark und ungewöhnlich.</li>
 <li><strong>Noemi</strong> – Hebräisch, „die Liebliche“. Bekannter in Südeuropa, selten in Deutschland.</li>
 <li><strong>Ayla</strong> – Türkisch, „Mondlicht“. International und klangvoll.</li>
 <li><strong>Calla</strong> – Griechisch, „die Schöne“. Auch eine elegante Blume.</li>
