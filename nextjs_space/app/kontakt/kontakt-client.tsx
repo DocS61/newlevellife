@@ -183,7 +183,7 @@ export function KontaktClient() {
                 </div>
 
                 <div className="flex items-center justify-between pt-2">
-                  <p className="text-xs text-muted-foreground">Deine Daten werden nur zur Bearbeitung deiner Anfrage verwendet.</p>
+                  <p className="text-xs text-muted-foreground">Deine Daten werden nur zur Bearbeitung deiner Anfrage verwendet. Details findest du in unserer <a href="/datenschutz" className="underline hover:text-foreground transition-colors">Datenschutzerklärung</a>.</p>
                   <button
                     type="submit"
                     disabled={sending}

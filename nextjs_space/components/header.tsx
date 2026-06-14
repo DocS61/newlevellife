@@ -31,12 +31,6 @@ export function Header() {
           <Link href="/kontakt" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent transition-colors">
             Kontakt
           </Link>
-          <Link href="/datenschutz" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent transition-colors">
-            Datenschutz
-          </Link>
-          <Link href="/impressum" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent transition-colors">
-            Impressum
-          </Link>
         </nav>
 
         {/* Mobile nav */}
@@ -68,12 +62,6 @@ export function Header() {
               </Link>
               <Link href="/kontakt" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent" onClick={() => setMenuOpen(false)}>
                 Kontakt
-              </Link>
-              <Link href="/datenschutz" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent" onClick={() => setMenuOpen(false)}>
-                Datenschutz
-              </Link>
-              <Link href="/impressum" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent" onClick={() => setMenuOpen(false)}>
-                Impressum
               </Link>
             </nav>
           </motion.div>

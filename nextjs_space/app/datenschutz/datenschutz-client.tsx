@@ -96,7 +96,22 @@ Beim Kombinations-Check (Vorname + Nachname) und beim Doppelname-Check (zwei Vor
 Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Bereitstellung der Analysefunktion). Die Verarbeitung erfolgt ausschließlich zum Zweck der einmaligen Analyse und Ergebnisanzeige.`
     },
     {
-      heading: '9. Hosting',
+      heading: '9. Kontaktformular',
+      text: `Wenn Sie uns über das Kontaktformular auf unserer Website eine Nachricht senden, werden folgende Daten erhoben und verarbeitet:
+
+• Name
+• E-Mail-Adresse
+• Betreff (Auswahl)
+• Nachricht (Freitext)
+
+Diese Daten werden ausschließlich zur Bearbeitung Ihrer Anfrage verwendet und per E-Mail an uns weitergeleitet. Eine Speicherung in einer Datenbank erfolgt nicht. Die übermittelten Daten werden nicht an Dritte weitergegeben, es sei denn, dies ist zur Bearbeitung Ihrer Anfrage erforderlich.
+
+Rechtsgrundlage für die Verarbeitung ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Beantwortung von Nutzeranfragen). Sofern Ihre Kontaktaufnahme auf den Abschluss eines Vertrages abzielt, ist zusätzliche Rechtsgrundlage Art. 6 Abs. 1 lit. b DSGVO.
+
+Ihre Daten werden gelöscht, sobald Ihre Anfrage abschließend bearbeitet wurde und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.`
+    },
+    {
+      heading: '10. Hosting',
       text: `Diese Website wird bei der Hetzner Online GmbH, Industriestr. 25, 91710 Gunzenhausen, Deutschland gehostet. Die Server befinden sich ausschließlich in Deutschland.
 
 Hetzner verarbeitet Ihre Daten nur im Rahmen der Erbringung der Hostingleistung und folgt unseren Weisungen bezüglich dieser Daten. Ein Auftragsverarbeitungsvertrag nach Art. 28 DSGVO ist abgeschlossen.
@@ -104,7 +119,7 @@ Hetzner verarbeitet Ihre Daten nur im Rahmen der Erbringung der Hostingleistung 
 Weitere Informationen: https://www.hetzner.com/de/legal/privacy-policy`
     },
     {
-      heading: '10. Ihre Rechte als betroffene Person',
+      heading: '11. Ihre Rechte als betroffene Person',
       text: `Sie haben gegenüber uns folgende Rechte hinsichtlich der Sie betreffenden personenbezogenen Daten:
 
 • Recht auf Auskunft (Art. 15 DSGVO)
@@ -125,8 +140,8 @@ Lautenschlagerstraße 20
 https://www.baden-wuerttemberg.datenschutz.de`
     },
     {
-      heading: '11. Aktualität und Änderung dieser Datenschutzerklärung',
-      text: `Diese Datenschutzerklärung ist aktuell gültig und hat den Stand Mai 2026.
+      heading: '12. Aktualität und Änderung dieser Datenschutzerklärung',
+      text: `Diese Datenschutzerklärung ist aktuell gültig und hat den Stand Juni 2026.
 
 Durch die Weiterentwicklung unserer Website oder aufgrund geänderter gesetzlicher beziehungsweise behördlicher Vorgaben kann es notwendig werden, diese Datenschutzerklärung zu ändern. Die jeweils aktuelle Datenschutzerklärung kann jederzeit auf dieser Seite abgerufen werden.`
     },
