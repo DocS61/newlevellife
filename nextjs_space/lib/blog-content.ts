@@ -97,7 +97,7 @@ const articles: Record<string, string> = {
 <ul>
 <li><strong>Aussprache:</strong> Kann jeder den Namen beim ersten Lesen korrekt aussprechen?</li>
 <li><strong>Schreibweise:</strong> Muss dein Kind den Namen ständig buchstabieren?</li>
-<li><strong>Späterer Träger:</strong> Funktioniert der Name auch für einen Erwachsenen, eine Führungskraft, eine Ärztin?</li>
+<li><strong>Späterer Träger:</strong> Funktioniert der Name auch für einen Erwachsenen – als Arzt, Anwalt oder Geschäftsführer?</li>
 <li><strong>Abkürzungen:</strong> Welche Spitznamen ergeben sich natürlich?</li>
 </ul>
 <p>Teste deinen Favoriten mit unserem <a href="/">Namensanalyse-Tool</a> – wir prüfen all diese Faktoren automatisch!</p>
@@ -179,7 +179,7 @@ const articles: Record<string, string> = {
 <p>„Schreibt man das mit Y oder I?“ – <strong>Kreative Schreibweisen</strong> (Sofie vs. Sophie, Maik vs. Mike) führen zu lebenslangem Buchstabieren. Überlege, ob das den Namen wirklich aufwertet.</p>
 
 <h2>7. Der Trend-Check</h2>
-<p>Ein Name, der heute ultramodern klingt, kann in 20 Jahren datiert wirken. <strong>Überlege: Gibt es den Namen schon seit mindestens 50 Jahren?</strong> Dann hat er den „Zeitlosigkeits-Test“ bestanden. Extremer Trend kann später zur Belastung werden.</p>
+<p>Ein Name, der heute ultramodern klingt, kann in 20 Jahren veraltet wirken. <strong>Überlege: Gibt es den Namen schon seit mindestens 50 Jahren?</strong> Dann hat er den „Zeitlosigkeits-Test“ bestanden. Extremer Trend kann später zur Belastung werden.</p>
 
 <h2>8. Der Auslands-Test</h2>
 <p>Selbst wenn ihr nicht plant, ins Ausland zu ziehen: <strong>Kann der Name international ausgesprochen werden?</strong> Dein Kind wird reisen, studieren, arbeiten – ein unaussprechlicher Name kann zum Hindernis werden.</p>
@@ -207,7 +207,7 @@ const articles: Record<string, string> = {
 <p>Eltern denken an den schönen vollen Namen – <strong>aber Kinder und Mitschüler finden immer eine Abkürzung</strong>. Aus „Alexandra“ wird „Alex“, aus „Sebastian“ wird „Sebbo“. Manchmal gefallen die ungewollten Kurzformen den Eltern gar nicht.</p>
 
 <h3>3. Aussprache-Probleme</h3>
-<p>Ein Name, der in der Familie perfekt klingt, <strong>kann im Alltag zum Dauerproblem werden</strong>. Lehrende, Ärzte, Behörden – wenn niemand den Namen beim ersten Mal richtig ausspricht, wird es anstrengend – für Kind und Eltern.</p>
+<p>Ein Name, der in der Familie perfekt klingt, <strong>kann im Alltag zum Dauerproblem werden</strong>. Lehrer, Ärzte, Behörden – wenn niemand den Namen beim ersten Mal richtig ausspricht, wird es anstrengend – für Kind und Eltern.</p>
 
 <h3>4. Negative Assoziationen</h3>
 <p>Manchmal taucht nach der Namenswahl plötzlich ein berühmter Namensträger auf, der den Namen in ein schlechtes Licht rückt. <strong>Oder eine populäre Studie zeigt</strong>, dass Personalchefs bei bestimmten Namen unbewusste Vorurteile haben.</p>
@@ -245,8 +245,8 @@ const articles: Record<string, string> = {
 </ul>
 
 <h2>Das „Kevin“-Phänomen</h2>
-<p>2009 sorgte eine Studie der Universität Oldenburg für Aufsehen: <strong>Grundschullehrkräfte schrieben Kindern mit bestimmten Vornamen systematisch niedrigere Kompetenzen zu</strong> – unabhängig von der tatsächlichen Leistung. Der berüchtigte Satz „Kevin ist kein Name, sondern eine Diagnose“ fiel in dieser Studie.</p>
-<p>Wichtig: Dies sagt nichts über die Menschen mit diesen Namen aus, sondern über <strong>die Vorurteile der Bewertenden</strong>. Trotzdem hat es reale Auswirkungen.</p>
+<p>2009 sorgte eine Studie der Universität Oldenburg für Aufsehen: <strong>Grundschullehrer schrieben Kindern mit bestimmten Vornamen systematisch niedrigere Kompetenzen zu</strong> – unabhängig von der tatsächlichen Leistung. Der berüchtigte Satz „Kevin ist kein Name, sondern eine Diagnose“ fiel in dieser Studie.</p>
+<p>Wichtig: Dies sagt nichts über die Menschen mit diesen Namen aus, sondern über <strong>die Vorurteile derjenigen, die bewerten</strong>. Trotzdem hat es reale Auswirkungen.</p>
 
 <h2>Der „Name-Letter-Effect“</h2>
 <p>Menschen bevorzugen Buchstaben, die in ihrem eigenen Namen vorkommen. <strong>Studien zeigen, dass ein „D“-Name statistisch häufiger in einer Stadt wohnt, die mit „D“ beginnt, oder einen Beruf wählt, der mit „D“ anfängt.</strong> Dieser „Implicit-Egotism-Effekt“ ist subtil, aber statistisch nachweisbar.</p>
