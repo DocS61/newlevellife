@@ -1,20 +1,14 @@
 import { MetadataRoute } from 'next'
 import { prisma } from '@/lib/prisma'
+import { blogArticles } from '@/lib/blog-data'
 
 export const dynamic = 'force-dynamic'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXTAUTH_URL ?? 'http://localhost:3000'
 
-  const blogSlugs = [
-    'beliebteste-babynamen-2026',
-    'seltene-vornamen-mit-schoener-bedeutung',
-    'babynamen-international-funktionieren',
-    'tipps-fuer-die-namenswahl',
-    'namensreue-vermeiden',
-    'was-dein-vorname-ueber-dich-verraet',
-    'alte-deutsche-vornamen-comeback',
-  ]
+  const blogSlugs = blogArticles.map(a => a.slug)
+
 
   const blogPages = ['/blog', ...blogSlugs.map(s => `/blog/${s}`)]
 
