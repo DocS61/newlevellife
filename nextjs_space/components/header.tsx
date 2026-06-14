@@ -25,6 +25,12 @@ export function Header() {
           <Link href="/" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent transition-colors">
             Startseite
           </Link>
+          <Link href="/about" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent transition-colors">
+            Über uns
+          </Link>
+          <Link href="/kontakt" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent transition-colors">
+            Kontakt
+          </Link>
           <Link href="/datenschutz" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent transition-colors">
             Datenschutz
           </Link>
@@ -56,6 +62,12 @@ export function Header() {
             <nav className="max-w-[1200px] mx-auto px-4 py-3 flex flex-col gap-1">
               <Link href="/" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent" onClick={() => setMenuOpen(false)}>
                 Startseite
+              </Link>
+              <Link href="/about" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent" onClick={() => setMenuOpen(false)}>
+                Über uns
+              </Link>
+              <Link href="/kontakt" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent" onClick={() => setMenuOpen(false)}>
+                Kontakt
               </Link>
               <Link href="/datenschutz" className="px-3 py-2 rounded-lg text-sm font-medium hover:bg-accent" onClick={() => setMenuOpen(false)}>
                 Datenschutz

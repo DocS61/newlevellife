@@ -2,21 +2,22 @@
 
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
-import { Shield, Globe, Briefcase, TrendingUp, Info, AlertTriangle } from 'lucide-react'
+import { Shield, Globe, Briefcase, TrendingUp, Info, AlertTriangle, Heart, BookOpen, Users, Sparkles } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 export function AboutClient() {
-  const sections = [
-    { icon: Shield, title: 'Mobbing-Risiko (0-10)', text: 'Wir bewerten das Potenzial für Hänseleien, unerwünschte Spitznamen und phonetische Ähnlichkeiten mit negativen Wörtern in mehreren Sprachen.', color: 'hsl(0, 84%, 60%)' },
-    { icon: Globe, title: 'Internationale Aussprache (0-10)', text: 'Wie leicht kann der Name in verschiedenen Sprachen und Kulturen ausgesprochen werden? Enthält er schwierige Laute oder ungewöhnliche Buchstabenkombinationen?', color: 'hsl(262, 60%, 55%)' },
-    { icon: Briefcase, title: 'Karrierewirkung (0-10)', text: 'Studien zeigen, dass Namen die Wahrnehmung in beruflichen Kontexten beeinflussen können. Wir bewerten, wie der Name in formellen Umgebungen wirkt.', color: 'hsl(43, 74%, 50%)' },
-    { icon: TrendingUp, title: 'Trend-Analyse (0-10)', text: 'Ist der Name ein kurzlebiger Trend oder ein zeitloser Klassiker? Wir analysieren Popularitätskurven und kulturelle Relevanz.', color: 'hsl(170, 60%, 45%)' },
+  const categories = [
+    { icon: Shield, title: 'Mobbing-Risiko (0–10)', text: 'Wir bewerten das Potenzial für Hänseleien, unerwünschte Spitznamen und phonetische Ähnlichkeiten mit negativen Wörtern – angepasst an den deutschen Sprachraum.', color: 'hsl(0, 84%, 60%)' },
+    { icon: Globe, title: 'Internationale Aussprache (0–10)', text: 'Wie leicht lässt sich der Name in verschiedenen Sprachen aussprechen? Enthält er schwierige Laute oder Buchstabenkombinationen, die im Ausland Probleme bereiten?', color: 'hsl(262, 60%, 55%)' },
+    { icon: Briefcase, title: 'Karrierewirkung (0–10)', text: 'Studien zeigen, dass Vornamen die Wahrnehmung im Berufsleben beeinflussen können. Wir schätzen ein, wie der Name in formellen Kontexten wirkt.', color: 'hsl(43, 74%, 50%)' },
+    { icon: TrendingUp, title: 'Trend-Analyse (0–10)', text: 'Ist der Name ein kurzlebiger Hype oder ein zeitloser Klassiker? Wir analysieren Popularitätskurven und kulturelle Relevanz im DACH-Raum.', color: 'hsl(170, 60%, 45%)' },
   ]
 
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-1">
+        {/* Hero */}
         <section className="hero-gradient">
           <div className="max-w-[800px] mx-auto px-4 sm:px-6 pt-16 pb-8">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
@@ -25,19 +26,47 @@ export function AboutClient() {
                 <span className="text-xs font-medium text-[hsl(262,60%,55%)]">Über uns</span>
               </div>
               <h1 className="font-display text-3xl sm:text-4xl font-bold tracking-tight mb-4">Über Namensreue</h1>
-              <p className="text-muted-foreground leading-relaxed">Namensreue hilft werdenden Eltern, fundierte Entscheidungen bei der Namenswahl zu treffen.</p>
+              <p className="text-muted-foreground leading-relaxed text-lg">
+                Namensreue wurde von einem kleinen Team aus Deutschland entwickelt – aus der Überzeugung, dass die Namenswahl für ein Kind eine der wichtigsten Entscheidungen ist, die Eltern treffen.
+              </p>
             </motion.div>
           </div>
         </section>
 
+        {/* Unsere Mission */}
         <section className="max-w-[800px] mx-auto px-4 sm:px-6 py-12">
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}>
-            <h2 className="font-display text-2xl font-bold tracking-tight mb-6">Unsere Methodik</h2>
-            <p className="text-muted-foreground leading-relaxed mb-8">Unsere Analyse basiert auf vier Schlüsselkategorien, die jeweils auf einer Skala von 0 bis 10 bewertet werden. Der Gesamt-Reue-Score (0-100) ergibt sich aus dem gewichteten Durchschnitt dieser Kategorien.</p>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15 }}>
+            <div className="flex items-center gap-3 mb-5">
+              <div className="p-2 rounded-lg bg-[hsl(340,75%,55%/0.1)]">
+                <Heart className="w-5 h-5 text-[hsl(340,75%,55%)]" />
+              </div>
+              <h2 className="font-display text-2xl font-bold tracking-tight">Unsere Mission</h2>
+            </div>
+            <div className="space-y-4 text-muted-foreground leading-relaxed">
+              <p>
+                Jedes Jahr stehen Hunderttausende werdende Eltern im deutschsprachigen Raum vor derselben Frage: <strong className="text-foreground">Welcher Name passt zu unserem Kind?</strong> Babynamen-Listen gibt es viele – aber kaum ein Tool, das einen Namen aus mehreren Perspektiven objektiv analysiert.
+              </p>
+              <p>
+                Genau das macht Namensreue. Unser Algorithmus prüft jeden Namen auf vier entscheidende Kriterien und berücksichtigt dabei linguistische, kulturelle und gesellschaftliche Faktoren. Ergänzt wird die Analyse durch künstliche Intelligenz, die zusätzliche Kontexte einbezieht.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Methodik */}
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.25 }} className="mt-12">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="p-2 rounded-lg bg-[hsl(262,60%,55%/0.1)]">
+                <BookOpen className="w-5 h-5 text-[hsl(262,60%,55%)]" />
+              </div>
+              <h2 className="font-display text-2xl font-bold tracking-tight">Unsere Methodik</h2>
+            </div>
+            <p className="text-muted-foreground leading-relaxed mb-8">
+              Unsere Analyse basiert auf vier Schlüsselkategorien, die jeweils auf einer Skala von 0 bis 10 bewertet werden. Der Gesamt-Reue-Score (0–100) ergibt sich aus dem gewichteten Durchschnitt dieser Kategorien. Niedrige Werte sind dabei immer besser.
+            </p>
           </motion.div>
 
           <div className="space-y-5">
-            {sections.map((s: any, i: number) => (
+            {categories.map((s, i) => (
               <motion.div
                 key={s.title}
                 initial={{ opacity: 0, x: -20 }}
@@ -59,15 +88,54 @@ export function AboutClient() {
             ))}
           </div>
 
+          {/* Datengrundlage */}
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }} className="mt-12">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="p-2 rounded-lg bg-[hsl(170,60%,45%/0.1)]">
+                <Sparkles className="w-5 h-5 text-[hsl(170,60%,45%)]" />
+              </div>
+              <h2 className="font-display text-2xl font-bold tracking-tight">Datengrundlage & Technik</h2>
+            </div>
+            <div className="space-y-4 text-muted-foreground leading-relaxed">
+              <p>
+                Unsere Datenbank umfasst über <strong className="text-foreground">450 sorgfältig kuratierte Namen</strong> aus dem DACH-Raum – von zeitlosen Klassikern bis zu modernen Trendnamen. Jeder Name wurde manuell geprüft und mit Herkunft, Bedeutung und Analyse-Scores versehen.
+              </p>
+              <p>
+                Für Namen, die nicht in unserer Datenbank enthalten sind, nutzen wir KI-gestützte Echtzeit-Analyse, die den Namen nach denselben vier Kriterien bewertet. Zusätzlich bieten wir eine phonetische Kombinations-Analyse für Vor- und Nachnamen sowie Doppelnamen.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Wer wir sind */}
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }} className="mt-12">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="p-2 rounded-lg bg-[hsl(43,74%,50%/0.1)]">
+                <Users className="w-5 h-5 text-[hsl(43,74%,50%)]" />
+              </div>
+              <h2 className="font-display text-2xl font-bold tracking-tight">Wer steckt dahinter?</h2>
+            </div>
+            <div className="space-y-4 text-muted-foreground leading-relaxed">
+              <p>
+                Hinter Namensreue steht ein kleines, unabhängiges Team aus Deutschland mit Leidenschaft für Sprache, Daten und gutes Webdesign. Wir sind keine Namensberater im klassischen Sinne – aber wir glauben, dass Technologie Eltern bei einer der schönsten Entscheidungen ihres Lebens unterstützen kann.
+              </p>
+              <p>
+                Namensreue ist ein unabhängiges Projekt, das komplett auf deutschen Servern gehostet wird und höchsten Wert auf Datenschutz legt. Wir speichern keine persönlichen Suchanfragen und verfolgen kein Nutzerverhalten.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Hinweis */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.7 }}
+            transition={{ delay: 0.9 }}
             className="mt-10 p-5 rounded-xl bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800"
           >
             <div className="flex items-start gap-3">
               <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
-              <p className="text-sm text-amber-800 dark:text-amber-200 leading-relaxed">Hinweis: Alle Bewertungen dienen der Unterhaltung und Information. Die endgültige Namenwahl ist eine persönliche Entscheidung.</p>
+              <p className="text-sm text-amber-800 dark:text-amber-200 leading-relaxed">
+                <strong>Hinweis:</strong> Alle Bewertungen dienen der Unterhaltung und Information. Die endgültige Namenswahl ist eine persönliche Entscheidung, die wir respektieren – egal, wie der Score ausfällt.
+              </p>
             </div>
           </motion.div>
         </section>
