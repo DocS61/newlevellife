@@ -35,7 +35,10 @@ export function Footer() {
               © {year} Namensreue. Alle Analysen dienen der Unterhaltung und ersetzen keine professionelle Beratung.
               <Heart className="w-3.5 h-3.5 text-[hsl(340,75%,55%)] inline" />
             </p>
-            <nav className="flex items-center gap-4">
+            <nav className="flex items-center gap-4 flex-wrap justify-center sm:justify-end">
+              <Link href="/blog" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                Blog
+              </Link>
               <Link href="/about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 Über uns
               </Link>
