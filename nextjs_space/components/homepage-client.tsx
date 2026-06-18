@@ -10,7 +10,7 @@ import { InstallPrompt } from './install-prompt'
 import { TopNamesSection } from './top-names-section'
 import { blogArticles } from '@/lib/blog-data'
 import Link from 'next/link'
-import { Baby, Shield, Globe, Briefcase, TrendingUp, Search, BarChart3, CheckCircle, Lightbulb, HelpCircle, Heart, Share2, BookOpen, ArrowRight, Users, Layers, Sparkles } from 'lucide-react'
+import { Baby, Shield, Globe, Briefcase, TrendingUp, Search, BarChart3, CheckCircle, Lightbulb, HelpCircle, Heart, Share2, BookOpen, ArrowRight, Users, Layers, Sparkles, RefreshCw } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { toast } from 'sonner'
 
@@ -201,6 +201,28 @@ export function HomepageClient() {
             </motion.div>
           ))}
         </div>
+      </section>
+
+      {/* Datenbank-Update-Hinweis */}
+      <section className="max-w-[1200px] mx-auto px-4 sm:px-6 pb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex items-start gap-4 p-5 sm:p-6 rounded-xl border border-[hsl(170,60%,45%/0.25)] bg-gradient-to-br from-emerald-50/60 to-teal-50/40 dark:from-emerald-950/20 dark:to-teal-950/15"
+          style={{ boxShadow: 'var(--shadow-sm)' }}
+        >
+          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center text-white shrink-0 mt-0.5">
+            <RefreshCw className="w-5 h-5" />
+          </div>
+          <div>
+            <h3 className="font-display font-semibold text-sm sm:text-base mb-1">Unsere Datenbank wächst stetig</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Wir erweitern unsere Namensdatenbank laufend um neue Einträge und aktualisieren die Liste der beliebtesten Namen regelmäßig.
+              So bleibst du immer auf dem neuesten Stand – ob klassische Favoriten oder frische Trendnamen.
+            </p>
+          </div>
+        </motion.div>
       </section>
 
       {/* Wie funktioniert es? */}
