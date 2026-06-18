@@ -3,12 +3,12 @@
 import { NameSearch } from './name-search'
 import { PopularNames } from './popular-names'
 import { RecentSearches } from './recent-searches'
-import { AdPlaceholder } from './ad-placeholder'
 import { Header } from './header'
 import { Footer } from './footer'
 import { InstallPrompt } from './install-prompt'
 import { TopNamesSection } from './top-names-section'
 import { blogArticles } from '@/lib/blog-data'
+import { SourcesSection } from './sources-section'
 import Link from 'next/link'
 import { Baby, Shield, Globe, Briefcase, TrendingUp, Search, BarChart3, CheckCircle, Lightbulb, HelpCircle, Heart, Share2, BookOpen, ArrowRight, Users, Layers, Sparkles, RefreshCw } from 'lucide-react'
 import { motion } from 'framer-motion'
@@ -120,11 +120,6 @@ export function HomepageClient() {
         </div>
       </section>
 
-      {/* Ad below hero */}
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-4">
-        <AdPlaceholder position="hero-below" />
-      </div>
-
       {/* Features */}
       <section className="max-w-[1200px] mx-auto px-4 sm:px-6 py-12">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -203,6 +198,17 @@ export function HomepageClient() {
         </div>
       </section>
 
+      {/* Quellen & Referenzen */}
+      <section className="max-w-[1200px] mx-auto px-4 sm:px-6 pb-8">
+        <SourcesSection sources={[
+          { title: 'Vornamen-Studie: Lehrererwartungen und Vorurteile', url: 'https://www.uni-oldenburg.de/presse/aktuell/414/', publisher: 'Universität Oldenburg' },
+          { title: 'Der Dorian-Gray-Effekt: Vornamen beeinflussen das Aussehen', url: 'https://doi.org/10.1037/pspa0000076', publisher: 'Journal of Personality and Social Psychology (2017)' },
+          { title: 'Gesellschaft für deutsche Sprache: Vornamen-Statistik', url: 'https://gfds.de/vornamen/', publisher: 'GfdS e. V.' },
+          { title: 'Beliebte Vornamen: Jahresstatistiken seit 1890', url: 'https://www.beliebte-vornamen.de/', publisher: 'Knud Bielefeld / beliebte-vornamen.de' },
+          { title: 'Standesamt und Namensrecht in Deutschland', url: 'https://www.bmi.bund.de/', publisher: 'Bundesministerium des Innern' },
+        ]} />
+      </section>
+
       {/* Datenbank-Update-Hinweis */}
       <section className="max-w-[1200px] mx-auto px-4 sm:px-6 pb-12">
         <motion.div
@@ -272,14 +278,9 @@ export function HomepageClient() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-10">
             <PopularNames />
-            <AdPlaceholder position="between-results" />
             <RecentSearches />
           </div>
-          <div className="hidden lg:block">
-            <div className="sticky top-24">
-              <AdPlaceholder position="sidebar" />
-            </div>
-          </div>
+
         </div>
       </section>
 
@@ -388,11 +389,6 @@ export function HomepageClient() {
           ))}
         </div>
       </section>
-
-      {/* Ad before FAQ */}
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-4">
-        <AdPlaceholder position="between-results" />
-      </div>
 
       {/* FAQ */}
       <section className="max-w-[1200px] mx-auto px-4 sm:px-6 py-12">

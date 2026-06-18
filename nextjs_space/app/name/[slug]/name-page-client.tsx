@@ -6,7 +6,6 @@ import NameContentSection from '@/components/name-content-section'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
 
-import { AdPlaceholder } from '@/components/ad-placeholder'
 import { ArrowLeft, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
@@ -52,13 +51,10 @@ export function NamePageClient({ nameData, relatedNames }: NamePageClientProps) 
 
             <NameContentSection data={nameData} />
 
-            <AdPlaceholder position="between-results" />
           </div>
 
           {/* Sidebar */}
           <div className="space-y-6">
-            <AdPlaceholder position="sidebar" />
-
             {/* Related Names */}
             {relatedNames.length > 0 && (
               <motion.div

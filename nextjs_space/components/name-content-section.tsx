@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { BookOpen, Globe, Briefcase, TrendingUp, Shield, Heart } from 'lucide-react';
+import { BookOpen, Globe, Briefcase, TrendingUp, Shield, Heart, ExternalLink } from 'lucide-react';
 
 import { NameData } from '@/lib/types';
 
@@ -275,6 +275,27 @@ export default function NameContentSection({ data }: { data: NameData }) {
         <p className="text-gray-700 leading-relaxed">
           Letztlich ist die Namenswahl immer auch eine Herzensangelegenheit. Unsere Daten können bei der Entscheidung helfen, aber der persönliche Bezug zum Namen ist mindestens genauso wichtig. Wenn Sie {name} in Betracht ziehen, nutzen Sie unsere detaillierte Analyse als einen von vielen Bausteinen Ihrer Entscheidung.
         </p>
+      </div>
+      {/* Quellen & Referenzen */}
+      <div className="rounded-xl border border-gray-200 bg-gray-50 p-6">
+        <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+          <ExternalLink className="w-4 h-4 text-gray-500" />
+          Quellen & Referenzen
+        </h3>
+        <ul className="space-y-2">
+          <li className="text-sm text-gray-600">
+            <a href="https://gfds.de/vornamen/" target="_blank" rel="noopener noreferrer nofollow" className="text-indigo-600 hover:underline">Gesellschaft für deutsche Sprache: Vornamen-Statistik</a> – GfdS e.\u202fV.
+          </li>
+          <li className="text-sm text-gray-600">
+            <a href="https://www.beliebte-vornamen.de/" target="_blank" rel="noopener noreferrer nofollow" className="text-indigo-600 hover:underline">Beliebte Vornamen: Jahresstatistiken</a> – Knud Bielefeld / beliebte-vornamen.de
+          </li>
+          <li className="text-sm text-gray-600">
+            <a href="https://de.wikipedia.org/wiki/Vorname" target="_blank" rel="noopener noreferrer nofollow" className="text-indigo-600 hover:underline">Vorname – Wikipedia</a> – Wikimedia Foundation
+          </li>
+          <li className="text-sm text-gray-600">
+            <a href="https://doi.org/10.1037/pspa0000076" target="_blank" rel="noopener noreferrer nofollow" className="text-indigo-600 hover:underline">Dorian-Gray-Effekt bei Vornamen</a> – Journal of Personality and Social Psychology (2017)
+          </li>
+        </ul>
       </div>
     </section>
   );

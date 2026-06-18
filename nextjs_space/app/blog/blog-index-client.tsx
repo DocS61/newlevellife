@@ -45,8 +45,8 @@ export function BlogIndexClient() {
                 >
                   <div className="flex items-start justify-between gap-3 mb-4">
                     <span
-                      className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium text-white"
-                      style={{ backgroundColor: article.categoryColor }}
+                      className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold"
+                      style={{ backgroundColor: article.categoryColor.replace('hsl(', 'hsla(').replace(')', ', 0.15)'), color: article.categoryColor }}
                     >
                       {article.category}
                     </span>
@@ -55,11 +55,11 @@ export function BlogIndexClient() {
                   <h2 className="font-display text-lg font-bold tracking-tight mb-2 group-hover:text-[hsl(340,75%,55%)] transition-colors">
                     {article.title}
                   </h2>
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                  <p className="text-sm text-foreground/70 leading-relaxed mb-4">
                     {article.description}
                   </p>
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                    <div className="flex items-center gap-3 text-xs text-foreground/60">
                       <span>{new Date(article.date).toLocaleDateString('de-DE', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
                       <span className="flex items-center gap-1">
                         <Clock className="w-3 h-3" />

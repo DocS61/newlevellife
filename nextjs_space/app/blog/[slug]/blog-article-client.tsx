@@ -30,8 +30,8 @@ export function BlogArticleClient({ slug }: { slug: string }) {
               </Link>
               <div className="flex items-center gap-3 mb-4">
                 <span
-                  className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium text-white"
-                  style={{ backgroundColor: article.categoryColor }}
+                  className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold"
+                  style={{ backgroundColor: article.categoryColor.replace('hsl(', 'hsla(').replace(')', ', 0.15)'), color: article.categoryColor }}
                 >
                   {article.category}
                 </span>
